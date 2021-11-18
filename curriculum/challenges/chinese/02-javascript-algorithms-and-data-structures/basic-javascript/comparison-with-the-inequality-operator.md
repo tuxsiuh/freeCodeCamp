@@ -9,7 +9,7 @@ dashedName: comparison-with-the-inequality-operator
 
 # --description--
 
-不相等运算符（`!=`）与相等运算符是相反的。 这意味着严格不相等并返回 `false` 的地方，用严格相等运算符会返回 `true`，*反之亦然*。 与相等运算符类似，不相等运算符在比较的时候也会转换值的数据类型。
+不相等运算符（`!=`）与相等运算符是相反的。 这意味着不相等并返回 `false` 的地方，用相等运算符会返回 `true`，*反之亦然*。 与相等运算符类似，不相等运算符在比较的时候也会转换值的数据类型。
 
 **例如**
 
@@ -25,7 +25,7 @@ dashedName: comparison-with-the-inequality-operator
 
 # --instructions--
 
-在 `if` 语句中，添加不相等运算符 `!=`，这样函数在当 `val` 不等于 `99` 的时候，会返回 `Not Equal`。
+在 `if` 语句中添加不等运算符 `!=` 以便函数在 `val` 不等于 `99` 时返回字符串 `Not Equal`。
 
 # --hints--
 

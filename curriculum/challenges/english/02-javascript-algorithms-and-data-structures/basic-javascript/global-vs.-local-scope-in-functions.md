@@ -9,19 +9,20 @@ dashedName: global-vs--local-scope-in-functions
 
 # --description--
 
-It is possible to have both <dfn>local</dfn> and <dfn>global</dfn> variables with the same name. When you do this, the `local` variable takes precedence over the `global` variable.
+It is possible to have both <dfn>local</dfn> and <dfn>global</dfn> variables with the same name. When you do this, the local variable takes precedence over the global variable.
 
 In this example:
 
 ```js
-var someVar = "Hat";
+const someVar = "Hat";
+
 function myFun() {
-  var someVar = "Head";
+  const someVar = "Head";
   return someVar;
 }
 ```
 
-The function `myFun` will return the string `Head` because the `local` version of the variable is present.
+The function `myFun` will return the string `Head` because the local version of the variable is present.
 
 # --instructions--
 
@@ -53,12 +54,10 @@ assert(/return outerWear/.test(code));
 
 ```js
 // Setup
-var outerWear = "T-Shirt";
+const outerWear = "T-Shirt";
 
 function myOutfit() {
   // Only change code below this line
-
-
 
   // Only change code above this line
   return outerWear;
@@ -70,9 +69,9 @@ myOutfit();
 # --solutions--
 
 ```js
-var outerWear = "T-Shirt";
+const outerWear = "T-Shirt";
 function myOutfit() {
-  var outerWear = "sweater";
+  const outerWear = "sweater";
   return outerWear;
 }
 ```

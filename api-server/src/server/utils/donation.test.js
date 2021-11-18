@@ -1,17 +1,6 @@
 /* eslint-disable camelcase */
-/* global describe it expect */
-/* global jest*/
-
 import axios from 'axios';
 import keys from '../../../../config/secrets';
-import {
-  getAsyncPaypalToken,
-  verifyWebHook,
-  updateUser,
-  capitalizeKeys,
-  createDonationObj
-} from './donation';
-import { mockActivationHook, mockCancellationHook } from './__mocks__/donation';
 import {
   mockApp,
   createDonationMockFn,
@@ -19,6 +8,14 @@ import {
   updateDonationAttr,
   updateUserAttr
 } from '../boot_tests/fixtures';
+import { mockActivationHook, mockCancellationHook } from './__mocks__/donation';
+import {
+  getAsyncPaypalToken,
+  verifyWebHook,
+  updateUser,
+  capitalizeKeys,
+  createDonationObj
+} from './donation';
 
 jest.mock('axios');
 

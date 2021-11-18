@@ -1,6 +1,6 @@
 ---
 id: 5900f3cc1000cf542c50fedf
-title: 'Problem 96: Su Doku'
+title: '問題 96：數獨'
 challengeType: 5
 forumTopicId: 302213
 dashedName: problem-96-su-doku
@@ -8,7 +8,7 @@ dashedName: problem-96-su-doku
 
 # --description--
 
-Su Doku (Japanese meaning *number place*) is the name given to a popular puzzle concept. Its origin is unclear, but credit must be attributed to Leonhard Euler who invented a similar, and much more difficult, puzzle idea called Latin Squares. The objective of Su Doku puzzles, however, is to replace the blanks (or zeros) in a 9 by 9 grid in such that each row, column, and 3 by 3 box contains each of the digits 1 to 9. Below is an example of a typical starting puzzle grid and its solution grid.
+數獨（日語含義爲*數字位置*）是一個非常流行的解密遊戲。 它的起源尚不清楚，但必須歸功於萊昂哈德·歐拉（Leonhard Euler），他發明了一種類似的，但更加困難的解密遊戲，名叫拉丁方塊（Latin Squares）。 數獨的目標是用數字替換 9X9 網格中的空白（或零），使得每行，每列和每個 3X3 小網格中都只包含 1 到 9 這 9 個數字。 下面是一個示例，包含一個經典的謎題及其對應解。
 
 <div style="margin: auto; background-color: white; padding: 10px; width: 80%; text-align: center;">
   <table border="0" cellpadding="0" cellspacing="0" align="center">
@@ -100,51 +100,44 @@ Su Doku (Japanese meaning *number place*) is the name given to a popular puzzle 
   </table>
 </div>
 
-A well constructed Su Doku puzzle has a unique solution and can be solved by logic, although it may be necessary to employ "guess and test" methods in order to eliminate options (there is much contested opinion over this). The complexity of the search determines the difficulty of the puzzle; the example above is considered easy because it can be solved by straight forward direct deduction.
+一個構造良好的數獨謎題應該只有一個唯一的解，可以通過邏輯解出，雖然可能需要採用“猜測和測試”方法來排除選項（對此有很多爭議的意見）。 搜索的複雜性決定了謎題的難度；上面的示例很簡單，因此可以通過直接的邏輯推理來解出答案。
 
-The `puzzlesArr` array contains fifty different Su Doku puzzle strings ranging in difficulty, but all with unique solutions (the first puzzle in the array is the example in the challenge description).
+`puzzlesArr` 數組裏有若干個數獨謎題字符串，難度不一，但是每個謎題的解都是唯一的。
 
-By solving all fifty puzzles find the sum of the 3-digit numbers found in the top left corner of each solution grid; for example, 483 is the 3-digit number found in the top left corner of the solution grid above.
+通過解出 `puzzlesArr` 數組中所有謎題，返回所有解左上角三位數字之和；舉個例子，483 就是上述例子中左上角的三位數字。
 
 # --hints--
 
-`suDoku(testPuzzles)` should return a number.
+`suDoku(testPuzzles1)` 應該返回一個數字。
 
 ```js
-assert(typeof suDoku(testPuzzles) === 'number');
+assert(typeof suDoku(_testPuzzles1) === 'number');
 ```
 
-`suDoku(testPuzzles)` should return 1190.
+`suDoku(testPuzzles1)` 應該返回 `1190`。
 
 ```js
-assert.strictEqual(suDoku(testPuzzles), 1190);
+assert.strictEqual(suDoku(_testPuzzles1), 1190);
 ```
 
-`suDoku(puzzlesArr)` should return 24702.
+`suDoku(testPuzzles2)` 應該返回 `24702`。
 
 ```js
-assert.strictEqual(suDoku(puzzlesArr), 24702);
+assert.strictEqual(suDoku(_testPuzzles2), 24702);
 ```
 
 # --seed--
 
-## --seed-contents--
+## --after-user-code--
 
 ```js
-function suDoku(arr) {
-
-  return true;
-}
-
-// Only change code above this line
-
-const testPuzzles = [
+const _testPuzzles1 = [
   '003020600900305001001806400008102900700000008006708200002609500800203009005010300',
   '200080300060070084030500209000105408000000000402706000301007040720040060004010003',
   '000000907000420180000705026100904000050000040000507009920108000034059000507000000'
 ];
 
-const puzzlesArr = [
+const _testPuzzles2 = [
   '003020600900305001001806400008102900700000008006708200002609500800203009005010300',
   '200080300060070084030500209000105408000000000402706000301007040720040060004010003',
   '000000907000420180000705026100904000050000040000507009920108000034059000507000000',
@@ -196,12 +189,108 @@ const puzzlesArr = [
   '000003017015009008060000000100007000009000200000500004000000020500600340340200000',
   '300200000000107000706030500070009080900020004010800050009040301000702000000008006'
 ];
+```
 
-suDoku(testPuzzles);
+## --seed-contents--
+
+```js
+function suDoku(puzzlesArr) {
+
+  return true;
+}
+
+// Only change code above this line
+
+const testPuzzles1 = [
+  '003020600900305001001806400008102900700000008006708200002609500800203009005010300',
+  '200080300060070084030500209000105408000000000402706000301007040720040060004010003',
+  '000000907000420180000705026100904000050000040000507009920108000034059000507000000'
+];
+
+suDoku(testPuzzles1);
 ```
 
 # --solutions--
 
 ```js
-// solution required
+function suDoku(puzzlesArr) {
+  function solve(puzzle) {
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        if (puzzle[row][col] > 0) {
+          continue;
+        }
+
+        const allowedNumbers = getAllowedNumbers(puzzle, row, col);
+
+        for (let number = 1; number <= 9; number++) {
+          if (allowedNumbers[number]) {
+            puzzle[row][col] = number;
+            if (solve(puzzle)) {
+              return true;
+            }
+          }
+        }
+
+        puzzle[row][col] = 0;
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function getAllowedNumbers(puzzle, row, col) {
+    const allowed = new Array(10).fill(true);
+    allowed[0] = false;
+
+    for (let i = 0; i < 9; i++) {
+      const numberInSameRow = puzzle[row][i];
+      if (numberInSameRow > 0) {
+        allowed[numberInSameRow] = false;
+      }
+
+      const numberInSameCol = puzzle[i][col];
+      if (numberInSameCol > 0) {
+        allowed[numberInSameCol] = false;
+      }
+    }
+
+    const rowOfSubGrid = Math.floor(row / 3) * 3;
+    const colOfSubGrid = Math.floor(col / 3) * 3;
+    for (let rowInSubGrid = 0; rowInSubGrid < 3; rowInSubGrid++) {
+      for (let colInSubGrid = 0; colInSubGrid < 3; colInSubGrid++) {
+        const numberInSameSubGrid =
+          puzzle[rowOfSubGrid + rowInSubGrid][colOfSubGrid + colInSubGrid];
+        if (numberInSameSubGrid > 0) {
+          allowed[numberInSameSubGrid] = false;
+        }
+      }
+    }
+
+    return allowed;
+  }
+
+  function parsePuzzle(string) {
+    const puzzle = [];
+    for (let row = 0; row < 9; row++) {
+      puzzle.push(
+        string
+          .slice(row * 9, 9 + row * 9)
+          .split('')
+          .map(x => parseInt(x, 10))
+      );
+    }
+    return puzzle;
+  }
+
+  let sum = 0;
+  for (let i = 0; i < puzzlesArr.length; i++) {
+    const puzzle = parsePuzzle(puzzlesArr[i]);
+    if (solve(puzzle)) {
+      sum += 100 * puzzle[0][0] + 10 * puzzle[0][1] + puzzle[0][2];
+    }
+  }
+
+  return sum;
+}
 ```

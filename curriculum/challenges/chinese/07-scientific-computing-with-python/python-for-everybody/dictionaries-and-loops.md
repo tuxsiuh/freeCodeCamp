@@ -1,22 +1,26 @@
 ---
 id: 5e7b9f0a0b6c005b0e76f069
-title: Dictionaries and Loops
+title: 字典和循环
 challengeType: 11
 videoId: EEmekKiKG70
+bilibiliIds:
+  aid: 589401038
+  bvid: BV1eq4y1X7xU
+  cid: 376387132
 dashedName: dictionaries-and-loops
 ---
 
 # --description--
 
-More resources:
+更多资源：
 
-\- [Exercise](https://www.youtube.com/watch?v=PrhZ9qwBDD8)
+\- [练习](https://www.youtube.com/watch?v=PrhZ9qwBDD8)
 
 # --question--
 
 ## --text--
 
-What will the following code print?:
+以下代码将打印什么?
 
 ```python
 counts = { 'chuck' : 1 , 'annie' : 42, 'jan': 100}
@@ -42,7 +46,7 @@ jan 100</pre>
 
 ---
 
-<pre>[Error]</pre>
+<pre>[Error]（错误）</pre>
 
 ## --video-solution--
 

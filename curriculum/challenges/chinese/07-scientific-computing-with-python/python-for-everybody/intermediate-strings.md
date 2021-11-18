@@ -1,22 +1,26 @@
 ---
 id: 5e7b9f070b6c005b0e76f061
-title: Intermediate Strings
+title: 中间字符串
 challengeType: 11
 videoId: KgT_fYLXnyk
+bilibiliIds:
+  aid: 291983121
+  bvid: BV1Zf4y157yG
+  cid: 376394116
 dashedName: intermediate-strings
 ---
 
 # --description--
 
-More resources:
+更多资料：
 
-\- [Exercise](https://www.youtube.com/watch?v=1bSqHot-KwE)
+[练习](https://www.youtube.com/watch?v=1bSqHot-KwE)
 
 # --question--
 
 ## --text--
 
-What is the value of i in the following code?
+下面的代码中 i 的值是什么？
 
 ```python
 word = "bananana"
@@ -37,7 +41,7 @@ nanana
 
 ---
 
-True
+True（真）
 
 ---
 

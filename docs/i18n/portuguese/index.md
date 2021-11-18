@@ -1,49 +1,43 @@
-The [freeCodeCamp.org](https://freecodecamp.org) community is possible thanks to thousands of kind volunteers like you. If you want to contribute your time and expertise, we would be excited to welcome you aboard.
+A comunidade do  [freeCodeCamp.org](https://freecodecamp.org) é possível graças a milhares de voluntários como você. Se você quer contribuir com o seu tempo e com suas habilidades, ficamos felizes em recebê-lo(a).
 
-> [!NOTE] Before you proceed, please take a quick 2 minutes to read our [Code of Conduct](https://www.freecodecamp.org/code-of-conduct). We strictly enforce it across our community so that contributing to freeCodeCamp.org is a safe, inclusive experience for everyone.
+> [!NOTE] Antes de continuar, reserve 2 minutinhos para ler o nosso [Código de Conduta](https://www.freecodecamp.org/code-of-conduct). Nós o aplicamos rigorosamente em toda a nossa comunidade para que contribuir com o freeCodeCamp.org seja uma experiência segura e inclusiva para todos.
 
-Happy contributing.
+Fique à vontade para criar, atualizar e corrigir bugs em nosso [currículo](#curriculum), ajude-nos a corrigir bugs na [plataforma de aprendizagem](#learning-platform) do freeCodeCamp ou [ajude-nos a traduzir](#translations) o freeCodeCamp.org para idiomas do mundo inteiro.
 
-You are welcome to:
+Respondemos às perguntas mais comuns sobre como contribuir [no nosso FAQ do colaborador](FAQ.md).
 
-- Create, update and fix bugs in our [curriculum](#curriculum).
-- Help us fix bugs in freeCodeCamp.org's [learning platform](#learning-platform).
-- [Help us translate](#translations) freeCodeCamp.org to world languages.
+Boas contribuições.
 
-We answer the most common questions about contributing [in our contributor FAQ](/FAQ.md).
+---
 
-## Curriculum
+## Currículo
 
-Our curriculum is curated by the global freeCodeCamp community. This way, we are able to incorporate expert knowledge from volunteers like you.
+Nosso currículo é sustentado pela comunidade global do freeCodeCamp. Desta forma, podemos incorporar conhecimentos especializados de voluntários como você.
 
-You can help expand and improve the curriculum. You can also update project user stories to better-explain concepts. And you can improve our automated tests so that we can more accurately test people's code.
+Você pode ajudar a expandir e melhorar o currículo. Você também pode atualizar as histórias de usuário do projeto para explicar melhor os conceitos. E você pode melhorar nossos testes automatizados para que possamos testar com mais precisão o código das pessoas.
 
-**If you're interested in improving our curriculum, here's [how to contribute to the curriculum](how-to-work-on-coding-challenges.md).**
+**Se você está interessado em melhorar nosso currículo, aqui está [como contribuir para o currículo](how-to-work-on-coding-challenges.md).**
 
-## Translations
+## Traduções
 
-We are localizing freeCodeCamp.org to major world languages. Some of the certifications are already live in [Chinese (中文)](https://chinese.freecodecamp.org/learn) and [Spanish (Español)](https://www.freecodecamp.org/espanol/learn/). We encourage you to read the [announcement here](https://www.freecodecamp.org/news/world-language-translation-effort) and share it your friends to get them excited about this.
+Estamos traduzindo o freeCodeCamp.org para os principais idiomas do mundo.
 
-**If you're interested in translating, here's [how to translate freeCodeCamp's resources](how-to-translate-files.md).**
+Muitas certificações já estão prontas em alguns dos idiomas principais do mundo como o [chinês (中文),](https://chinese.freecodecamp.org/learn), o [espanhol (español)](https://www.freecodecamp.org/espanol/learn/), o [italiano](https://www.freecodecamp.org/espanol/learn/) e o [português](https://www.freecodecamp.org/espanol/learn/). Recomendamos a leitura do [anúncio aqui](https://www.freecodecamp.org/news/world-language-translation-effort) e o compartilhamento com seus amigos.
 
-## Learning Platform
+**Se você está interessado em traduzir, veja como traduzir os recursos do  [freeCodeCamp](how-to-translate-files.md).**
 
-Our learning platform runs on a modern JavaScript stack. It has various components, tools, and libraries. These include Node.js, MongoDB, OAuth 2.0, React, Gatsby, Webpack, and more.
+## Plataforma de aprendizagem
 
-Broadly, we use
+Nossa plataforma de aprendizagem executa em uma stack de JavaScript moderna. Ela possui vários componentes, ferramentas e bibliotecas. Estes incluem Node.js, MongoDB, OAuth 2.0, React, Gatsby, Webpack e mais.
 
-- a Node.js based API server
-- a set of React-based client applications
-- and testing scripts to evaluate camper-submitted curriculum projects.
+Geralmente, temos um servidor de API baseado em Node.js, um conjunto de aplicativos de client baseados em React, testes de scripts para avaliar projetos de currículo apresentados pelos campers e muito mais. Se você deseja contribuir produtivamente para nossa plataforma de aprendizagem, recomendamos alguma familiaridade com estas ferramentas.
 
-If you want to productively contribute to the learning platform, we recommend some familiarity with these tools.
+Se você quer nos ajudar a melhorar nossa base de código...
 
-If you want to help us improve our codebase...
+**você pode usar o Gitpod, um ambiente de desenvolvimento on-line gratuito que inicia um ambiente de desenvolvimento pronto para o freeCodeCamp em seu navegador.**
 
-**you can either use Gitpod, a free online dev environment that starts a ready-to-code dev environment for freeCodeCamp in your browser.**
+[![Abra no Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/freeCodeCamp/freeCodeCamp)
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/freeCodeCamp/freeCodeCamp)
+Ou você pode...
 
-Or you can...
-
-**[set up freeCodeCamp locally](how-to-setup-freecodecamp-locally.md) on your machine.**
+**[configurar localmente o freeCodeCamp](how-to-setup-freecodecamp-locally.md) em sua máquina.**

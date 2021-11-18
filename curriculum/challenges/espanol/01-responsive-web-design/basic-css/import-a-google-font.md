@@ -40,7 +40,7 @@ Importa la fuente `Lobster` a tu página web. Luego, usa un selector de elemento
 Debes importar la fuente `Lobster`.
 
 ```js
-assert(new RegExp('googleapis', 'gi').test(code));
+assert($('link[href*="googleapis" i]').length);
 ```
 
 Tu elemento `h2` debe usar la fuente `Lobster`.
@@ -93,7 +93,7 @@ assert(
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
 
   <div>
     <p>Things cats love:</p>
@@ -145,7 +145,7 @@ assert(
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
 
   <div>
     <p>Things cats love:</p>

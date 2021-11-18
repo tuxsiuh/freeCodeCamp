@@ -37,7 +37,7 @@ console.log(names);
 
 # --instructions--
 
-`watchList` 數組保存了包含一些電影信息的對象。 使用 `map` 從 `watchList` 中提取標題（`title`）和評分（`rating`），並將新數組保存在 `ratings` 變量裏。 目前編輯器中的代碼是使用 `for` 循環實現，使用 `map` 表達式替換循環功能。
+`watchList` 數組保存了包含一些電影信息的對象。 在 `watchList` 上使用 `map`，將一個新的對象數組賦值給 `ratings` 變量。 新數組中的每個電影都只能有一個值爲電影名稱的 `title` 鍵，和一個值爲 IMDB 評級的 `rating` 鍵。 目前編輯器中的代碼是使用 `for` 循環實現，你應該使用 `map` 表達式替換循環功能。
 
 # --hints--
 
@@ -61,7 +61,7 @@ assert(!code.match(/for\s*?\([\s\S]*?\)/));
 assert(code.match(/\.map/g));
 ```
 
-`ratings` 應等於 `[{"title":"Inception","rating":"8.8"},{"title":"Interstellar","rating":"8.6"},{"title":"The Dark Knight","rating":"9.0"},{"title":"Batman Begins","rating":"8.3"},{"title":"Avatar","rating":"7.9"}]`。
+`ratings` 應該等於 `[{"title": "Inception", "rating": "8.8"}, {"title": "Interstellar", "rating": "8.6"}, {"title": "The Dark Knight", "rating": "9.0"},{"title": "Batman Begins", "rating": "8.3"}, {"title": "Avatar", "rating": "7.9"}]`。
 
 ```js
 assert.deepEqual(ratings, [
@@ -79,7 +79,7 @@ assert.deepEqual(ratings, [
 
 ```js
 // The global variable
-var watchList = [
+const watchList = [
   {
     "Title": "Inception",
     "Year": "2010",
@@ -194,9 +194,9 @@ var watchList = [
 
 // Only change code below this line
 
-var ratings = [];
-for(var i=0; i < watchList.length; i++){
-  ratings.push({title: watchList[i]["Title"],  rating: watchList[i]["imdbRating"]});
+const ratings = [];
+for (let i = 0; i < watchList.length; i++) {
+  ratings.push({title: watchList[i]["Title"], rating: watchList[i]["imdbRating"]});
 }
 
 // Only change code above this line
@@ -207,8 +207,7 @@ console.log(JSON.stringify(ratings));
 # --solutions--
 
 ```js
-// The global variable
-var watchList = [
+const watchList = [
   {
     "Title": "Inception",
     "Year": "2010",
@@ -321,7 +320,7 @@ var watchList = [
   }
 ];
 
-var ratings = watchList.map(function(movie) {
+const ratings = watchList.map(function(movie) {
   return {
     title: movie["Title"],
     rating: movie["imdbRating"]

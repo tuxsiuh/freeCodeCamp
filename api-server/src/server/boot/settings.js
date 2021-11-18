@@ -1,10 +1,10 @@
 import debug from 'debug';
 import { check } from 'express-validator';
 
-import { ifNoUser401, createValidatorErrorHandler } from '../utils/middleware';
-import { themes } from '../../common/utils/themes.js';
-import { alertTypes } from '../../common/utils/flash.js';
 import { isValidUsername } from '../../../../utils/validate';
+import { alertTypes } from '../../common/utils/flash.js';
+import { themes } from '../../common/utils/themes.js';
+import { ifNoUser401, createValidatorErrorHandler } from '../utils/middleware';
 
 const log = debug('fcc:boot:settings');
 
@@ -28,7 +28,6 @@ export default function settingsController(app) {
     updateMyCurrentChallenge
   );
   api.post('/update-my-portfolio', ifNoUser401, updateMyPortfolio);
-  api.post('/update-my-projects', ifNoUser401, updateMyProjects);
   api.post(
     '/update-my-theme',
     ifNoUser401,
@@ -159,16 +158,6 @@ function updateMyProfileUI(req, res, next) {
   );
 }
 
-function updateMyProjects(req, res, next) {
-  const {
-    user,
-    body: { projects: project }
-  } = req;
-  return user
-    .updateMyProjects(project)
-    .subscribe(message => res.json({ message }), next);
-}
-
 function updateMyAbout(req, res, next) {
   const {
     user,
@@ -184,11 +173,14 @@ function updateMyAbout(req, res, next) {
 function createUpdateMyUsername(app) {
   const { User } = app.models;
   return async function updateMyUsername(req, res, next) {
-    const {
-      user,
-      body: { username }
-    } = req;
-    if (username === user.username) {
+    const { user, body } = req;
+    const usernameDisplay = body.username.trim();
+    const username = usernameDisplay.toLowerCase();
+    if (
+      username === user.username &&
+      user.usernameDisplay &&
+      usernameDisplay === user.usernameDisplay
+    ) {
       return res.json({
         type: 'info',
         message: 'flash.username-used'
@@ -203,7 +195,8 @@ function createUpdateMyUsername(app) {
       });
     }
 
-    const exists = await User.doesExist(username);
+    const exists =
+      username === user.username ? false : await User.doesExist(username);
 
     if (exists) {
       return res.json({
@@ -212,7 +205,7 @@ function createUpdateMyUsername(app) {
       });
     }
 
-    return user.updateAttribute('username', username, err => {
+    return user.updateAttributes({ username, usernameDisplay }, err => {
       if (err) {
         res.status(500).json(standardErrorMessage);
         return next(err);
@@ -221,7 +214,7 @@ function createUpdateMyUsername(app) {
       return res.status(200).json({
         type: 'success',
         message: `flash.username-updated`,
-        variables: { username: username }
+        variables: { username: usernameDisplay }
       });
     });
   };

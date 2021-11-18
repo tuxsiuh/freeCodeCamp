@@ -3,22 +3,25 @@
     "es6": true,
     "browser": true,
     "mocha": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parser": "babel-eslint",
   "root": true,
   "extends": [
     "./.eslintrc-base.json",
-    "plugin:prettier/recommended",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
   ],
   "plugins": [
     "react",
     "import",
     "prefer-object-spread",
-    "prettier",
     "react-hooks",
-    "jsx-a11y"
+    "jsx-a11y",
+    "jest-dom",
+    "testing-library"
   ],
   "globals": {
     "Promise": true,
@@ -31,32 +34,80 @@
   "settings": {
     "react": {
       "version": "16.4.2",
-      "import/ignore": [
-        "\\.json$"
-      ],
-      "import/extensions": [
-        ".js",
-        ".jsx",
-        ".tsx"
-      ]
+      "import/ignore": ["\\.json$"],
+      "import/extensions": [".js", ".jsx", ".tsx", ".ts"]
     },
-    "import/ignore": [
-      "node_modules"
-    ]
+    "import/ignore": ["node_modules"]
   },
-  "overrides": [{
-    "files": ["**/*.ts?(x)"],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "tsconfigRootDir": "./client",
-      "project": ["./tsconfig.json"]
-     },
-    "extends": [
-      "plugin:@typescript-eslint/recommended",
-      "plugin:@typescript-eslint/recommended-requiring-type-checking"
-    ],
-    "plugins": [
-      "@typescript-eslint"
-    ]
-  }]
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": [
+          "./client/tsconfig.json",
+          "./tools/challenge-helper-scripts/tsconfig.json",
+          "./tools/ui-components/tsconfig.json"
+        ]
+      },
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "default",
+            "format": ["camelCase"],
+            "leadingUnderscore": "allow",
+            "trailingUnderscore": "allow"
+          },
+
+          {
+            "selector": "variable",
+            "format": ["camelCase", "UPPER_CASE", "PascalCase"],
+            "leadingUnderscore": "allowSingleOrDouble",
+            "trailingUnderscore": "allow"
+          },
+          {
+            "selector": "typeLike",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "^I[A-Z]|[a-zA-Z]Type$",
+              "match": false
+            }
+          },
+          {
+            "selector": "typeProperty",
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
+            "selector": "objectLiteralProperty",
+            "format": ["camelCase", "PascalCase"],
+            "leadingUnderscore": "allowSingleOrDouble"
+          },
+          {
+            "selector": "function",
+            "format": ["camelCase", "PascalCase"]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "./tools/ui-components/**/*.test.[jt]s?(x)",
+        "./client/**/*.test.[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+    },
+    {
+      "files": ["cypress/**/*.js"],
+      "globals": {
+        "cy": true,
+        "Cypress": true
+      }
+    }
+  ]
 }

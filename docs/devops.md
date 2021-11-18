@@ -209,7 +209,7 @@ You can identify the exact version deployed by visiting the build and deployment
 
 There are some known limitations and tradeoffs when using the beta version of the platform.
 
-- #### All data / personal progress on these beta platforms `will NOT be saved or carried over` to production.
+- #### All data / personal progress on these beta platforms will NOT be saved or carried over to production.
 
   **Users on the beta version will have a separate account from the production.** The beta version uses a physically separate database from production. This gives us the ability to prevent any accidental loss of data or modifications. The dev team may purge the database on this beta version as needed.
 
@@ -508,7 +508,7 @@ Code changes need to be deployed to the API instances from time to time. It can
 be a rolling update or a manual update. The later is essential when changing
 dependencies or adding environment variables.
 
-> [!DANGER] The automated pipelines are not handling dependencies updates at the
+> [!ATTENTION] The automated pipelines are not handling dependencies updates at the
 > minute. We need to do a manual update before any deployment pipeline runs.
 
 #### 1. Manual Updates - Used for updating dependencies, env variables.
@@ -609,7 +609,7 @@ Code changes need to be deployed to the API instances from time to time. It can
 be a rolling update or a manual update. The later is essential when changing
 dependencies or adding environment variables.
 
-> [!DANGER] The automated pipelines are not handling dependencies updates at the
+> [!ATTENTION] The automated pipelines are not handling dependencies updates at the
 > minute. We need to do a manual update before any deployment pipeline runs.
 
 #### 1. Manual Updates - Used for updating dependencies, env variables.
@@ -872,7 +872,7 @@ pm2 save
 pm2 logs
 ```
 
-> [!DANGER]
+> [!ATTENTION]
 > For client applications, the shell script can't be resurrected between Node.js versions with `pm2 resurrect`. Deploy processes from scratch instead. This should become nicer when we move to a docker based setup.
 
 ## Installing and Updating Azure Pipeline Agents
@@ -956,3 +956,20 @@ We use [a CLI tool](https://github.com/freecodecamp/sendgrid-email-blast) to sen
 6. Run the tool to send the emails, following the [usage documentation](https://github.com/freeCodeCamp/sendgrid-email-blast/blob/main/docs/cli-steps.md).
 
 7. When the email blast is complete, verify that no emails have failed before destroying the droplets.
+
+# Flight Manual - Adding news instances for new languges
+
+### Theme Changes
+
+We use a custom [theme](https://github.com/freeCodeCamp/news-theme) for our news publication. Adding the following changes to the theme enables the addition of new languages.
+
+1. Include the an else if statment for the new [ISO language code](https://www.loc.gov/standards/iso639-2/php/code_list.php) in [setup-local.js](https://github.com/freeCodeCamp/news-theme/blob/main/assets/config/setup-locale.js)
+2. Create an initial config folder by duplicating the [assets/config/en](https://github.com/freeCodeCamp/news-theme/tree/main/assets/config/en) folder and changing its name to the new language code. (en—> es for Spanish)
+3. Inside the new language folder, change the variable names in main.js and footer.js to the relevant language short code (enMain —> esMain for Spanish)
+4. Duplicate the [locals/en.json](https://github.com/freeCodeCamp/news-theme/blob/main/locales/en.json) and rename it to the new language code.
+5. In [partials/i18n.hbs](https://github.com/freeCodeCamp/news-theme/blob/main/partials/i18n.hbs), add scripts for newly created config files.
+6. Add the related language day.js script from [cdnjs](https://cdnjs.com/libraries/dayjs/1.10.4) to [freecodecamp cdn](https://github.com/freeCodeCamp/cdn/tree/main/build/news-assets/dayjs/1.10.4/locale)
+
+### Ghost Dashboard Changes
+
+Update the Publication assets by going to the ghost's dashboard > settings > general and uploading the publications's [icon](https://github.com/freeCodeCamp/design-style-guide/blob/master/assets/fcc-puck-500-favicon.png), [logo](https://github.com/freeCodeCamp/design-style-guide/blob/master/downloads/fcc_primary_large.png), and [cover](https://github.com/freeCodeCamp/design-style-guide/blob/master/assets/fcc_ghost_publication_cover.png).

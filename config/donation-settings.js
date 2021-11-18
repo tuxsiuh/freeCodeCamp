@@ -8,7 +8,8 @@ const amountsConfig = {
   onetime: [2500, 5000, 7500, 10000, 15000]
 };
 const defaultAmount = {
-  month: 500
+  month: 500,
+  onetime: 7500
 };
 const defaultDonation = {
   donationAmount: defaultAmount['month'],
@@ -75,7 +76,7 @@ const paypalConfigTypes = {
 
 const paypalConfigurator = (donationAmount, donationDuration, paypalConfig) => {
   if (donationDuration === 'onetime') {
-    return { amount: donationAmount, duration: donationDuration };
+    return { amount: donationAmount, duration: donationDuration, planId: null };
   }
   return {
     amount: donationAmount,
@@ -84,11 +85,12 @@ const paypalConfigurator = (donationAmount, donationDuration, paypalConfig) => {
   };
 };
 
-//
 const donationUrls = {
   successUrl: 'https://www.freecodecamp.org/news/thank-you-for-donating/',
   cancelUrl: 'https://freecodecamp.org/donate'
 };
+
+const patreonDefaultPledgeAmount = 500;
 
 module.exports = {
   durationsConfig,
@@ -102,5 +104,6 @@ module.exports = {
   onetimeSKUConfig,
   paypalConfigTypes,
   paypalConfigurator,
-  donationUrls
+  donationUrls,
+  patreonDefaultPledgeAmount
 };

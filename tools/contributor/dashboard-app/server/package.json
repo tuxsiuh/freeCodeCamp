@@ -5,8 +5,8 @@
   "license": "BSD-3-Clause",
   "private": true,
   "engines": {
-    "node": ">= 14.0.0",
-    "npm": "^6.14.12"
+    "node": ">=16",
+    "npm": ">=8"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/freeCodeCamp/freeCodeCamp/issues"
   },
-  "homepage": "https://github.com/freeCodeCamp/freeCodeCamp#readme",
+  "homepage": "https://tools.freecodecamp.org",
   "author": "freeCodeCamp <team@freecodecamp.org>",
   "main": "none",
   "scripts": {

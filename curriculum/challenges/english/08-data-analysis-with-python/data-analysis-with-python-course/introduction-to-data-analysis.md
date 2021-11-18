@@ -3,6 +3,10 @@ id: 5e9a093a74c4063ca6f7c14c
 title: Introduction to Data Analysis
 challengeType: 11
 videoId: VJrP2FUzKP0
+bilibiliIds:
+  aid: 378034466
+  bvid: BV19f4y1c7nu
+  cid: 409001487
 dashedName: introduction-to-data-analysis
 ---
 
@@ -10,31 +14,30 @@ dashedName: introduction-to-data-analysis
 
 More resources:
 
-\- [Slides](https://docs.google.com/presentation/d/1fDpjlyMiOMJyuc7_jMekcYLPP2XlSl1eWw9F7yE7byk)
+\- [Slides](https://docs.google.com/presentation/d/1cUIt8b2ySz-85_ykfeuuWsurccwTAuFPn782pZBzFsU/edit?usp=sharing)
 
 # --question--
 
 ## --text--
 
-Why should you choose R over Python for data analysis?
+Which of the following is **not** part of Data Analysis?
 
 ## --answers--
 
-It's simple to learn.
+Building statistical models and data visualizations.
 
 ---
 
-It's better at dealing with advanced statistical methods.
+Picking a desired conclusion for the analysis.
 
 ---
 
-There are many powerful libraries that support R.
+Fixing incorrect values and removing invalid data.
 
 ---
 
-It's free and open source.
+Transforming data into an appropriate data structure.
 
 ## --video-solution--
 
 2
-

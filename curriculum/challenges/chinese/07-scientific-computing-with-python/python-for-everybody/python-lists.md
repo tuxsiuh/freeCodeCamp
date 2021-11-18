@@ -1,8 +1,12 @@
 ---
 id: 5e7b9f080b6c005b0e76f064
-title: Python Lists
+title: Python 列表
 challengeType: 11
 videoId: Y0cvfDpYC_c
+bilibiliIds:
+  aid: 249460305
+  bvid: BV1Dv411E7Uj
+  cid: 376532993
 dashedName: python-lists
 ---
 
@@ -10,7 +14,7 @@ dashedName: python-lists
 
 ## --text--
 
-What is the value of x after running this code:
+在这些代码运行后，x 的值是什么？
 
 ```python
 fruit = "banana"

@@ -1,8 +1,12 @@
 ---
 id: 5e6a54c358d3af90110a60a3
-title: 'Introduction: Elements of Python'
+title: '導言：Python 的元素'
 challengeType: 11
 videoId: aRY_xjL35v0
+bilibiliIds:
+  aid: 674420725
+  bvid: BV1MU4y1H7Lj
+  cid: 376315889
 dashedName: introduction-elements-of-python
 ---
 
@@ -10,7 +14,7 @@ dashedName: introduction-elements-of-python
 
 ## --text--
 
-What will the following program print out:
+以下代碼將打印出什麼？
 
 ```python
 x = 43

@@ -1,6 +1,5 @@
 import { isURL } from 'validator';
 
-import { addPlaceholderImage } from './';
 import {
   prepUniqueDaysByHours,
   calcCurrentStreak,
@@ -52,6 +51,7 @@ export const userPropsForSession = [
   'id',
   'sendQuincyEmail',
   'theme',
+  'sound',
   'completedChallengeCount',
   'completedProjectCount',
   'completedCertCount',
@@ -62,7 +62,7 @@ export const userPropsForSession = [
 
 export function normaliseUserFields(user) {
   const about = user.bio && !user.about ? user.bio : user.about;
-  const picture = user.picture || addPlaceholderImage(user.username);
+  const picture = user.picture || '';
   const twitter =
     user.twitter && isURL(user.twitter)
       ? user.twitter

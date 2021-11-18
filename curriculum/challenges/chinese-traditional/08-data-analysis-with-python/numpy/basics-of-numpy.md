@@ -1,8 +1,12 @@
 ---
 id: 5e9a0a8e09c5df3cc3600ed3
-title: Basics of Numpy
+title: Numpy 的基礎知識
 challengeType: 11
 videoId: f9QrZrKQMLI
+bilibiliIds:
+  aid: 763014202
+  bvid: BV1K64y1a7bu
+  cid: 409025169
 dashedName: basics-of-numpy
 ---
 
@@ -10,7 +14,7 @@ dashedName: basics-of-numpy
 
 ## --text--
 
-What will the following code print?
+以下代碼將打印出什麼？
 
 ```python
 b = np.array([[1.0,2.0,3.0],[3.0,4.0,5.0]])

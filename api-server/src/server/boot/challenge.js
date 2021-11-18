@@ -4,21 +4,22 @@
  * a db migration to fix all completedChallenges
  *
  */
-import { Observable } from 'rx';
-import { isEmpty, pick, omit, find, uniqBy } from 'lodash';
 import debug from 'debug';
 import dedent from 'dedent';
+import { isEmpty, pick, omit, find, uniqBy } from 'lodash';
 import { ObjectID } from 'mongodb';
+import { Observable } from 'rx';
 import isNumeric from 'validator/lib/isNumeric';
 import isURL from 'validator/lib/isURL';
 
-import { ifNoUserSend } from '../utils/middleware';
+import { environment, deploymentEnv } from '../../../../config/env.json';
 import { fixCompletedChallengeItem } from '../../common/utils';
 import { getChallenges } from '../utils/get-curriculum';
+import { ifNoUserSend } from '../utils/middleware';
 import {
   getRedirectParams,
-  getRedirectBase,
-  normalizeParams
+  normalizeParams,
+  getPrefixedLandingPath
 } from '../utils/redirection';
 
 const log = debug('fcc:boot:challenges');
@@ -59,6 +60,10 @@ export default async function bootChallenge(app, done) {
 
   router.get('/challenges/current-challenge', redirectToCurrentChallenge);
 
+  const coderoadChallengeCompleted = createCoderoadChallengeCompleted(app);
+
+  api.post('/coderoad-challenge-completed', coderoadChallengeCompleted);
+
   app.use(api);
   app.use(router);
   done();
@@ -78,16 +83,14 @@ export function buildUserUpdate(
   _completedChallenge,
   timezone
 ) {
-  const { files } = _completedChallenge;
+  const { files, completedDate = Date.now() } = _completedChallenge;
   let completedChallenge = {};
   if (jsProjects.includes(challengeId)) {
     completedChallenge = {
       ..._completedChallenge,
-      files: Object.keys(files)
-        .map(key => files[key])
-        .map(file =>
-          pick(file, ['contents', 'key', 'index', 'name', 'path', 'ext'])
-        )
+      files: files.map(file =>
+        pick(file, ['contents', 'key', 'index', 'name', 'path', 'ext'])
+      )
     };
   } else {
     completedChallenge = omit(_completedChallenge, ['files']);
@@ -110,7 +113,7 @@ export function buildUserUpdate(
   } else {
     updateData.$push = {
       ...updateData.$push,
-      progressTimestamps: Date.now()
+      progressTimestamps: completedDate
     };
     finalChallenge = {
       ...completedChallenge
@@ -286,7 +289,7 @@ function projectCompleted(req, res, next) {
         })
       );
       return Observable.fromPromise(updatePromise).doOnNext(() => {
-        return res.send({
+        return res.json({
           alreadyCompleted,
           points: alreadyCompleted ? user.points : user.points + 1,
           completedDate: completedChallenge.completedDate
@@ -320,7 +323,7 @@ function backendChallengeCompleted(req, res, next) {
         })
       );
       return Observable.fromPromise(updatePromise).doOnNext(() => {
-        return res.send({
+        return res.json({
           alreadyCompleted,
           points: alreadyCompleted ? user.points : user.points + 1,
           completedDate: completedChallenge.completedDate
@@ -328,6 +331,87 @@ function backendChallengeCompleted(req, res, next) {
       });
     })
     .subscribe(() => {}, next);
+}
+
+function createCoderoadChallengeCompleted(app) {
+  /* Example request coming from CodeRoad:
+   * req.body: { tutorialId: 'freeCodeCamp/learn-bash-by-building-a-boilerplate:v1.0.0' }
+   * req.headers: { coderoad-user-token: '8kFIlZiwMioY6hqqt...' }
+   */
+
+  const { WebhookToken, User } = app.models;
+
+  return async function coderoadChallengeCompleted(req, res) {
+    const { 'coderoad-user-token': userWebhookToken } = req.headers;
+    const { tutorialId } = req.body;
+
+    if (!tutorialId) return res.send(`'tutorialId' not found in request body`);
+
+    if (!userWebhookToken)
+      return res.send(`'coderoad-user-token' not found in request headers`);
+
+    const tutorialRepoPath = tutorialId?.split(':')[0];
+    const tutorialSplit = tutorialRepoPath?.split('/');
+    const tutorialOrg = tutorialSplit?.[0];
+    const tutorialRepoName = tutorialSplit?.[1];
+
+    // this allows any GH account to host the repo in development or staging
+    // .org submissions should always be from repos hosted on the fCC GH org
+    if (deploymentEnv !== 'staging' && environment !== 'development') {
+      if (tutorialOrg !== 'freeCodeCamp')
+        return res.send('Tutorial not hosted on freeCodeCamp GitHub account');
+    }
+
+    const codeRoadChallenges = getChallenges().filter(
+      challenge => challenge.challengeType === 12
+    );
+
+    // validate tutorial name is in codeRoadChallenges object
+    const tutorialInfo = codeRoadChallenges.find(tutorial =>
+      tutorial.url?.includes(tutorialRepoName)
+    );
+
+    if (!tutorialInfo) return res.send('Tutorial name is not valid');
+
+    const tutorialMongoId = tutorialInfo?.id;
+
+    try {
+      // check if webhook token is in database
+      const tokenInfo = await WebhookToken.findOne({
+        where: { id: userWebhookToken }
+      });
+
+      if (!tokenInfo) return res.send('User webhook token not found');
+
+      const { userId } = tokenInfo;
+
+      // check if user exists for webhook token
+      const user = await User.findOne({
+        where: { id: userId }
+      });
+
+      if (!user) return res.send('User for webhook token not found');
+
+      // submit challenge
+      const completedDate = Date.now();
+
+      const userUpdateInfo = buildUserUpdate(user, tutorialMongoId, {
+        id: tutorialMongoId,
+        completedDate
+      });
+
+      const updatedUser = await user.updateAttributes(
+        userUpdateInfo?.updateData
+      );
+
+      if (!updatedUser)
+        return res.send('An error occurred trying to submit the challenge');
+    } catch (e) {
+      return res.send('An error occurred trying to submit the challenge');
+    }
+
+    return res.send('Successfully submitted challenge');
+  };
 }
 
 // TODO: extend tests to cover www.freecodecamp.org/language and
@@ -341,7 +425,7 @@ export function createRedirectToCurrentChallenge(
     const { user } = req;
     const { origin, pathPrefix } = getRedirectParams(req, normalizeParams);
 
-    const redirectBase = getRedirectBase(origin, pathPrefix);
+    const redirectBase = getPrefixedLandingPath(origin, pathPrefix);
     if (!user) {
       return res.redirect(redirectBase + '/learn');
     }

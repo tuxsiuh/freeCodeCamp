@@ -96,8 +96,10 @@
     "privacy": "The settings in this section enable you to control what is shown on your freeCodeCamp public portfolio.",
     "data": "To see what data we hold on your account, click the \"Download your data\" button below",
     "disabled": "Your certifications will be disabled, if set to private.",
+    "private-name": "Your name will not appear on your certifications, if this is set to private.",
     "claim-legacy": "Once you've earned the following freeCodeCamp certifications, you'll be able to claim the {{cert}}:",
     "for": "Account Settings for {{username}}",
+    "sound-mode": "This adds the pleasant sound of acoustic guitar throughout the website. You'll get musical feedback as you type in the editor, complete challenges, claim certifications, and more.",
     "username": {
       "contains invalid characters": "Username \"{{username}}\" contains invalid characters",
       "is too short": "Username \"{{username}}\" is too short",
@@ -132,7 +134,8 @@
       "my-portfolio": "My portfolio",
       "my-timeline": "My timeline",
       "my-donations": "My donations",
-      "night-mode": "Night Mode"
+      "night-mode": "Night Mode",
+      "sound-mode": "Campfire Mode"
     },
     "headings": {
       "certs": "Certifications",
@@ -305,6 +308,8 @@
     "confirm-2": "Confirm your one-time donation of ${{usd}}",
     "confirm-3": "Confirm your donation of ${{usd}} / month",
     "confirm-4": "Confirm your donation of ${{usd}} / year",
+    "wallet-label": "${{usd}} donation to freeCodeCamp",
+    "wallet-label-1": "${{usd}} / month donation to freeCodeCamp",
     "your-donation": "Your ${{usd}} donation will provide {{hours}} hours of learning to people around the world.",
     "your-donation-2": "Your ${{usd}} donation will provide {{hours}} hours of learning to people around the world each month.",
     "your-donation-3": "Your ${{usd}} donation will provide {{hours}} hours of learning to people around the world each year.",
@@ -315,6 +320,7 @@
     "nicely-done": "Nicely done. You just completed {{block}}.",
     "credit-card": "Credit Card",
     "credit-card-2": "Or donate with a credit card:",
+    "or-card": "Or donate with card",
     "paypal": "with PayPal:",
     "need-email": "We need a valid email address to which we can send your donation tax receipt.",
     "went-wrong": "Something went wrong processing your donation. Your card has not been charged.",
@@ -352,7 +358,7 @@
   },
   "search": {
     "label": "Search",
-    "placeholder": "Search 7,000+ tutorials",
+    "placeholder": "Search 8,000+ tutorials",
     "see-results": "See all results for {{searchQuery}}",
     "no-tutorials": "No tutorials found",
     "try": "Looking for something? Try the search bar on this page.",
@@ -360,6 +366,7 @@
   },
   "misc": {
     "offline": "You appear to be offline, your progress may not be saved",
+    "server-offline": "The server could not be reached and your progress may not be saved. Please contact <0>support</0> if this message persists",
     "unsubscribed": "You have successfully been unsubscribed",
     "keep-coding": "Whatever you go on to, keep coding!",
     "email-signup": "Email Sign Up",
@@ -395,7 +402,9 @@
     "analytics": "A bar chart and line graph",
     "shield": "A shield with a checkmark",
     "tensorflow": "Tensorflow icon",
-    "algorithm": "Branching nodes"
+    "database": "Database icon",
+    "algorithm": "Branching nodes",
+    "magnifier": "magnifier"
   },
   "aria": {
     "fcc-logo": "freeCodeCamp Logo",
@@ -421,6 +430,7 @@
     "wrong-updating": "Something went wrong updating your account. Please check and try again",
     "updated-preferences": "We have updated your preferences",
     "email-invalid": "Email format is invalid",
+    "email-valid": "Your email has successfully been changed, happy coding!",
     "bad-challengeId": "currentChallengeId is not a valid challenge ID",
     "theme-invalid": "Theme is invalid",
     "theme-set": "Theme already set",
@@ -440,6 +450,7 @@
     "cert-claim-success": "@{{username}}, you have successfully claimed the {{name}} Certification! Congratulations on behalf of the freeCodeCamp.org team!",
     "wrong-name": "Something went wrong with the verification of {{name}}, please try again. If you continue to receive this error, you can send a message to support@freeCodeCamp.org to get help.",
     "error-claiming": "Error claiming {{certName}}",
+    "refresh-needed": "You can only use the PaymentRequest button once. Refresh the page to start over.",
     "username-not-found": "We could not find a user with the username \"{{username}}\"",
     "add-name": "This user needs to add their name to their account in order for others to be able to view their certification.",
     "not-eligible": "This user is not eligible for freeCodeCamp.org certifications at this time.",
@@ -454,7 +465,12 @@
     "no-account": "No {{website}} account associated",
     "unlink-success": "You've successfully unlinked your {{website}}",
     "provide-username": "Check if you have provided a username and a report",
-    "report-sent": "A report was sent to the team with {{email}} in copy"
+    "report-sent": "A report was sent to the team with {{email}} in copy",
+    "certificate-missing": "The certification you tried to view does not exist",
+    "create-token-err": "An error occurred trying to create a token",
+    "delete-token-err": "An error occurred trying to delete your token",
+    "token-created": "You have successfully created a new token.",
+    "token-deleted": "Your token has been deleted."
   },
   "validation": {
     "max-characters": "There is a maximum limit of 288 characters, you have {{charsLeft}} left",
@@ -582,5 +598,18 @@
     "add-code-one": "Replace these two sentences with your copied code.",
     "add-code-two": "Please leave the ``` line above and the ``` line below,",
     "add-code-three": "because they allow your code to properly format in the post."
+  },
+  "webhook-token": {
+    "title": "Webhook Token",
+    "create": "Create a new token",
+    "create-p1": "It looks like you don't have a webhook token. Create one to save your progress on this section",
+    "create-p2": "Create a webhook token to save your progress on the curriculum sections that use a virtual machine.",
+    "delete": "Delete my token",
+    "delete-title": "Delete My Webhook Token",
+    "delete-p1": "Your webhook token below is used to save your progress on the curriculum sections that use a virtual machine.",
+    "delete-p2": "If you suspect your token has been compromised, you can delete it to make it unusable. Progress on previously submitted lessons will not be lost.",
+    "delete-p3": "You will need to create a new token to save future progress on the curriculum sections that use a virtual machine.",
+    "no-thanks": "No thanks, I would like to keep my token",
+    "yes-please": "Yes please, I would like to delete my token"
   }
 }

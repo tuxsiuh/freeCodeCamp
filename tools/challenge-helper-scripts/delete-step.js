@@ -1,12 +1,9 @@
 const fs = require('fs');
-
-const {
-  reorderSteps,
-  padWithLeadingZeros,
-  getExistingStepNums,
-  getProjectPath,
-  getArgValues
-} = require('./utils');
+const { getArgValues } = require('./helpers/get-arg-values');
+const { getExistingStepNums } = require('./helpers/get-existing-step-nums');
+const { getProjectPath } = require('./helpers/get-project-path');
+const { padWithLeadingZeros } = require('./helpers/pad-with-leading-zeros');
+const { reorderSteps } = require('./utils');
 
 const stepExists = (steps, stepToFind) => steps.includes(stepToFind);
 
@@ -25,7 +22,7 @@ if (!stepExists(existingSteps, num)) {
   throw `Step # ${num} not deleted because it does not exist.`;
 }
 
-const stepFileToDelete = `${projectPath}part-${padWithLeadingZeros(num)}.md`;
+const stepFileToDelete = `${projectPath}step-${padWithLeadingZeros(num)}.md`;
 try {
   fs.unlinkSync(stepFileToDelete);
   console.log(`Sucessfully deleted step #${num}`);

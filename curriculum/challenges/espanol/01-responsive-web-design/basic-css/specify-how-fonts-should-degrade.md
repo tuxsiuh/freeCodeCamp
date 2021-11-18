@@ -9,7 +9,7 @@ dashedName: specify-how-fonts-should-degrade
 
 # --description--
 
-Hay varias fuentes por defecto disponibles en todos los navegadores. Estas familias de fuentes genéricas incluyen a `monospace`, `serif` y `sans-serif`.
+Hay varias fuentes por defecto disponibles en todos los navegadores. Estas familias de fuentes genéricas incluyen `monospace`, `serif` y `sans-serif`.
 
 Cuando una fuente no está disponible en el sistema, puedes indicarle al navegador que "degrade" a otra fuente alternativa.
 
@@ -90,7 +90,7 @@ assert(new RegExp('[^fc]-->', 'gi').test(code));
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
 
   <div>
     <p>Things cats love:</p>
@@ -142,7 +142,7 @@ assert(new RegExp('[^fc]-->', 'gi').test(code));
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
 
   <div>
     <p>Things cats love:</p>

@@ -15,19 +15,19 @@ Start by installing the prerequisite software for your operating system.
 
 We primarily support development on Linux and Unix-based systems. Our staff and community contributors regularly work with the codebase using tools installed on Ubuntu and macOS.
 
-We also support Windows 10 via WSL2, which you can prepare by [reading this guide](/how-to-setup-wsl).
+We also support Windows 10 via WSL2, which you can prepare by [reading this guide](how-to-setup-wsl.md).
 
 Some community members also develop on Windows 10 natively with Git for Windows (Git Bash), and other tools installed on Windows. We do not have official support for such a setup at this time, we recommend using WSL2 instead.
 
-**Prerequisites:**
+#### Prerequisites:
 
-| Prerequisite                                                                                  | Version | Notes                                                                |
-| --------------------------------------------------------------------------------------------- | ------- | -------------------------------------------------------------------- |
-| [Node.js](http://nodejs.org)                                                                  | `14.x`  | [LTS Schedule](https://github.com/nodejs/Release#release-schedule)   |
-| npm (comes bundled with Node)                                                                 | `6.x`   | Does not have LTS releases, we use the version bundled with Node LTS |
-| [MongoDB Community Server](https://docs.mongodb.com/manual/administration/install-community/) | `4.0.x` | [Release Notes](https://docs.mongodb.com/v4.0/release-notes/)        |
+| Prerequisite                                                                                  | Version | Notes                                                                                       |
+| --------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------- |
+| [Node.js](http://nodejs.org)                                                                  | `16.x`  | We use the "Active LTS" version, See [LTS Schedule](https://nodejs.org/en/about/releases/). |
+| npm (comes bundled with Node)                                                                 | `8.x`   | We use the version bundled with Node.js Active LTS.                                         |
+| [MongoDB Community Server](https://docs.mongodb.com/manual/administration/install-community/) | `4.0.x` | -                                                                                           |
 
-> [!DANGER]
+> [!ATTENTION]
 > If you have a different version, please install the recommended version. We can only support installation issues for recommended versions. See [troubleshooting](#troubleshooting) for details.
 
 If Node.js is already installed on your machine, run the following commands to validate the versions:
@@ -42,7 +42,7 @@ npm -v
 
 Once you have the prerequisites installed, you need to prepare your development environment. This is common for many development workflows, and you will only need to do this once.
 
-**Follow these steps to get your development environment ready:**
+##### Follow these steps to get your development environment ready:
 
 1. Install [Git](https://git-scm.com/) or your favorite Git client, if you haven't already. Update to the latest version; the version that came bundled with your OS may be outdated.
 
@@ -175,13 +175,23 @@ The default API keys and environment variables are stored in the file `sample.en
 ```console
 # Create a copy of the "sample.env" and name it ".env".
 # Populate it with the necessary API keys and secrets:
+```
 
-# macOS / Linux
+<!-- tabs:start -->
+
+#### **macOS/Linux**
+
+```console
 cp sample.env .env
+```
 
-# Windows
+#### **Windows**
+
+```console
 copy sample.env .env
 ```
+
+<!-- tabs:end -->
 
 The keys in the `.env` file are _not_ required to be changed to run the app locally. You can leave the default values copied over from `sample.env` as-is.
 
@@ -205,19 +215,25 @@ Before you can run the application locally, you will need to start the MongoDB s
 
 Start the MongoDB server in a separate terminal:
 
-- On macOS & Ubuntu:
+  <!-- tabs:start -->
 
-  ```console
-  mongod
-  ```
+#### **macOS/Linux**
+
+```console
+mongod
+```
+
+#### **Windows**
 
 - On Windows, you must specify the full path to the `mongod` binary
 
-  ```console
-  "C:\Program Files\MongoDB\Server\3.6\bin\mongod"
-  ```
+```console
+"C:\Program Files\MongoDB\Server\3.6\bin\mongod"
+```
 
-  Make sure to replace `3.6` with the version you have installed
+  <!-- tabs:end -->
+
+Make sure to replace `3.6` with the version you have installed
 
 > [!TIP]
 > You can avoid having to start MongoDB every time by installing it as a background service. You can [learn more about it in their documentation for your OS](https://docs.mongodb.com/manual/administration/install-community/)
@@ -471,12 +487,12 @@ A quick reference to the commands that you will need when working locally.
 | `npm run develop`                                              | Starts the freeCodeCamp API Server and Client Applications.                         |
 | `npm run storybook`                                            | Starts Storybook for component library development.                                 |
 | `npm test`                                                     | Run all JS tests in the system, including client, server, lint and challenge tests. |
-| `npm run test:client`                                          | Run the client test suite.                                                          |
+| `npm run test-client`                                          | Run the client test suite.                                                          |
 | `npm run test:curriculum`                                      | Run the curriculum test suite.                                                      |
 | `npm run test:curriculum --block='Basic HTML and HTML5'`       | Test a specific Block.                                                              |
 | `npm run test:curriculum --superblock='responsive-web-design'` | Test a specific SuperBlock.                                                         |
 | `npm run test-curriculum-full-output`                          | Run the curriculum test suite, without bailing after the first error                |
-| `npm run test:server`                                          | Run the server test suite.                                                          |
+| `npm run test-server`                                          | Run the server test suite.                                                          |
 | `npm run e2e`                                                  | Run the Cypress end to end tests.                                                   |
 | `npm run clean`                                                | Uninstalls all dependencies and cleans up caches.                                   |
 
@@ -533,7 +549,9 @@ git clean -ifdX
 
 If you can't sign in, and instead you see a banner with an error message that it will be reported to freeCodeCamp, please double-check that your local port `3000` is not in use by a different program.
 
-**On Linux / macOS / WSL on Windows - From Terminal:**
+<!-- tabs:start -->
+
+#### **macOS/Linux/WSL on Windows - From Terminal:**
 
 ```console
 netstat -a | grep "3000"
@@ -541,7 +559,7 @@ netstat -a | grep "3000"
 tcp4    0   0    0.0.0.0:3000           DESKTOP      LISTEN
 ```
 
-**On Windows - From Elevated PowerShell:**
+#### **On Windows - From Elevated PowerShell:**
 
 ```powershell
 netstat -ab | Select-String "3000"
@@ -549,11 +567,18 @@ netstat -ab | Select-String "3000"
 TCP    0.0.0.0:3000           DESKTOP      LISTENING
 ```
 
+<!-- tabs:end -->
+
+---
+
 ### Issues installing dependencies
 
 If you get errors while installing the dependencies, please make sure that you are not in a restricted network or your firewall settings do not prevent you from accessing resources.
 
 The first time setup can take a while depending on your network bandwidth. Be patient, and if you are still stuck we recommend using GitPod instead of an offline setup.
+
+> [!NOTE]
+> If you are using Apple Devices with M1 Chip to run the application locally, it is suggested to use Node v14.7 or above. You might run into issues with dependencies like Sharp otherwise.
 
 ## Getting Help
 

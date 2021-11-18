@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
+import { connect } from 'react-redux';
 import ScrollableAnchor from 'react-scrollable-anchor';
+import { bindActionCreators } from 'redux';
+import { createSelector } from 'reselect';
+import store from 'store';
 
-import { makeExpandedBlockSelector, toggleBlock } from '../redux';
-import { completedChallengesSelector, executeGA } from '../../../redux';
-import Challenges from './Challenges';
-import Caret from '../../../assets/icons/Caret';
-import GreenPass from '../../../assets/icons/GreenPass';
-import GreenNotCompleted from '../../../assets/icons/GreenNotCompleted';
-import { isAuditedCert } from '../../../../../utils/is-audited';
 import envData from '../../../../../config/env.json';
+import { isAuditedCert } from '../../../../../utils/is-audited';
+import Caret from '../../../assets/icons/caret';
+import GreenNotCompleted from '../../../assets/icons/green-not-completed';
+import GreenPass from '../../../assets/icons/green-pass';
 import { Link } from '../../../components/helpers/';
+import { completedChallengesSelector, executeGA } from '../../../redux';
+import { makeExpandedBlockSelector, toggleBlock } from '../redux';
+import Challenges from './Challenges';
 
 const { curriculumLocale } = envData;
 
@@ -56,6 +57,16 @@ export class Block extends Component {
 
   handleBlockClick() {
     const { blockDashedName, toggleBlock, executeGA } = this.props;
+    const playSound = store.get('fcc-sound');
+    if (playSound) {
+      void import('tone').then(tone => {
+        const player = new tone.Player(
+          'https://tonejs.github.io/audio/berklee/guitar_chord1.mp3'
+        ).toDestination();
+        if (tone.context.state !== 'running') tone.context.resume();
+        player.autostart = playSound;
+      });
+    }
     executeGA({
       type: 'event',
       data: {

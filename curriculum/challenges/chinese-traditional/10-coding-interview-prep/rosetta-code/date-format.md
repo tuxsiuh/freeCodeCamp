@@ -1,6 +1,6 @@
 ---
 id: 59669d08d75b60482359409f
-title: Date format
+title: 日期格式
 challengeType: 5
 forumTopicId: 302243
 dashedName: date-format
@@ -8,36 +8,42 @@ dashedName: date-format
 
 # --description--
 
-Return an array with the current date in the formats:
+返回一個包含兩個當前日期字符串的數組，要求如下：
 
-<ul>
-  <li>2007-11-23</li>
-  <li>Friday, November 23, 2007</li>
-</ul>
+- 第一個字符串的日期順序爲年、月、日，中間用破折號 (`-`) 隔開。
+- 第一個字符串的年份長度爲四位數。
+- 第一個字符串的月份和日期不能包含任何前導零。
+- 第二個字符串的星期名稱和月份名稱不能縮寫。
+- 第二個字符串的日期不能包含任何前導零。
 
-Example output: `['2007-11-23', 'Friday, November 23, 2007']`
+示例輸出：
+
+```js
+['2007-11-23', 'Friday, November 23, 2007']
+['2021-3-2', 'Tuesday, March 2, 2021']
+```
 
 # --hints--
 
-`getDateFormats` should be a function.
+`getDateFormats` 應該是一個函數。
 
 ```js
 assert(typeof getDateFormats === 'function');
 ```
 
-`getDateFormats` should return an object.
+`getDateFormats` 應該返回一個對象。
 
 ```js
 assert(typeof getDateFormats() === 'object');
 ```
 
-`getDateFormats` should return an array with 2 elements.
+`getDateFormats` 應該返回一個包含兩個元素的數組。
 
 ```js
 assert(getDateFormats().length === 2);
 ```
 
-`getDateFormats` should return the correct date in the right format
+`getDateFormats` 應該返回格式無誤的正確日期。
 
 ```js
 assert.deepEqual(getDateFormats(), dates, equalsMessage);

@@ -37,7 +37,7 @@ function createPoly({ name, ext, contents, history, ...rest } = {}) {
     name,
     ext,
     path: name + '.' + ext,
-    key: name + ext,
+    fileKey: name + ext,
     contents,
     error: null
   };
@@ -81,9 +81,19 @@ function setExt(ext, poly) {
     ...poly,
     ext,
     path: poly.name + '.' + ext,
-    key: poly.name + ext
+    fileKey: poly.name + ext
   };
   newPoly.history = [...poly.history, newPoly.path];
+  return newPoly;
+}
+
+// setImportedFiles(importedFiles: String[], poly: PolyVinyl) => PolyVinyl
+function setImportedFiles(importedFiles, poly) {
+  checkPoly(poly);
+  const newPoly = {
+    ...poly,
+    importedFiles: [...importedFiles]
+  };
   return newPoly;
 }
 
@@ -139,6 +149,7 @@ module.exports = {
   isPoly,
   setContent,
   setExt,
+  setImportedFiles,
   compileHeadTail,
   transformContents,
   transformHeadTailAndContents

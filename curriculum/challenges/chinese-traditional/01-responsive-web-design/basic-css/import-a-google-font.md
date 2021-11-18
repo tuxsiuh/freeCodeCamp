@@ -40,7 +40,7 @@ GENERIC_NAME 是可選的，它用來指明在其他字體不可用時的後備�
 應引入 `Lobster` 字體。
 
 ```js
-assert(new RegExp('googleapis', 'gi').test(code));
+assert($('link[href*="googleapis" i]').length);
 ```
 
 `h2` 元素應使用 `Lobster` 字體。
@@ -93,7 +93,7 @@ assert(
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
 
   <div>
     <p>Things cats love:</p>
@@ -145,7 +145,7 @@ assert(
 <main>
   <p class="red-text">Click here to view more <a href="#">cat photos</a>.</p>
 
-  <a href="#"><img src="https://bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back."></a>
+  <a href="#"><img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back."></a>
 
   <div>
     <p>Things cats love:</p>

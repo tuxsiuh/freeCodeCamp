@@ -5,8 +5,8 @@
   "license": "(BSD-3-Clause AND CC-BY-SA-4.0)",
   "private": true,
   "engines": {
-    "node": ">= 14.0.0",
-    "npm": "^6.14.12"
+    "node": ">=16",
+    "npm": ">=8"
   },
   "repository": {
     "type": "git",
@@ -19,11 +19,18 @@
   "author": "freeCodeCamp <team@freecodecamp.org>",
   "main": "utils.js",
   "scripts": {
-    "test": "mocha --delay --reporter progress --bail"
+    "test": "mocha --delay --reporter progress --bail",
+    "create-project": "ts-node create-project"
   },
   "devDependencies": {
+    "@types/inquirer": "7.3.3",
+    "@types/node": "16.11.7",
     "bson-objectid": "2.0.1",
     "cross-env": "7.0.3",
-    "gray-matter": "4.0.3"
+    "gray-matter": "4.0.3",
+    "inquirer": "8.1.2",
+    "prettier": "2.4.1",
+    "ts-node": "10.4.0",
+    "typescript": "4.4.4"
   }
 }

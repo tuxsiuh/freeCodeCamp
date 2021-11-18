@@ -5,18 +5,31 @@
  *
  */
 
+import badwordFilter from 'bad-words';
+import debugFactory from 'debug';
+import dedent from 'dedent';
+import _ from 'lodash';
+import moment from 'moment';
+import generate from 'nanoid/generate';
 import { Observable } from 'rx';
 import uuid from 'uuid/v4';
-import moment from 'moment';
-import dedent from 'dedent';
-import debugFactory from 'debug';
 import { isEmail } from 'validator';
-import _ from 'lodash';
-import generate from 'nanoid/generate';
-import badwordFilter from 'bad-words';
 
-import { apiLocation } from '../../../../config/env';
+import { blocklistedUsernames } from '../../../../config/constants';
+import { apiLocation } from '../../../../config/env.json';
 
+import { wrapHandledError } from '../../server/utils/create-handled-error.js';
+import {
+  setAccessTokenToResponse,
+  removeCookies
+} from '../../server/utils/getSetAccessToken';
+import {
+  normaliseUserFields,
+  getProgress,
+  publicUserProps
+} from '../../server/utils/publicUserProps';
+import { saveUser, observeMethod } from '../../server/utils/rx.js';
+import { getEmailSender } from '../../server/utils/url-utils';
 import {
   fixCompletedChallengeItem,
   getEncodedEmail,
@@ -25,20 +38,6 @@ import {
   renderSignUpEmail,
   renderSignInEmail
 } from '../utils';
-
-import { blocklistedUsernames } from '../../server/utils/constants.js';
-import { wrapHandledError } from '../../server/utils/create-handled-error.js';
-import { saveUser, observeMethod } from '../../server/utils/rx.js';
-import { getEmailSender } from '../../server/utils/url-utils';
-import {
-  normaliseUserFields,
-  getProgress,
-  publicUserProps
-} from '../../server/utils/publicUserProps';
-import {
-  setAccessTokenToResponse,
-  removeCookies
-} from '../../server/utils/getSetAccessToken';
 
 const log = debugFactory('fcc:models:user');
 const BROWNIEPOINTS_TIMEOUT = [1, 'hour'];
@@ -109,12 +108,13 @@ function isTheSame(val1, val2) {
 
 function getAboutProfile({
   username,
+  usernameDisplay,
   githubProfile: github,
   progressTimestamps = [],
   bio
 }) {
   return {
-    username,
+    username: usernameDisplay || username,
     github,
     browniePoints: progressTimestamps.length,
     bio
@@ -128,7 +128,8 @@ function nextTick(fn) {
 const getRandomNumber = () => Math.random();
 
 function populateRequiredFields(user) {
-  user.username = user.username.trim().toLowerCase();
+  user.usernameDisplay = user.username.trim();
+  user.username = user.usernameDisplay.toLowerCase();
   user.email =
     typeof user.email === 'string'
       ? user.email.trim().toLowerCase()
@@ -723,42 +724,6 @@ export default function initializeUser(User) {
         Your privacy settings have been updated.
       `
     );
-  };
-
-  User.prototype.updateMyUsername = function updateMyUsername(newUsername) {
-    return Observable.defer(() => {
-      const isOwnUsername = isTheSame(newUsername, this.username);
-      if (isOwnUsername) {
-        return Observable.of(dedent`
-          ${newUsername} is already associated with this account.
-          `);
-      }
-      return Observable.fromPromise(User.doesExist(newUsername));
-    }).flatMap(boolOrMessage => {
-      if (typeof boolOrMessage === 'string') {
-        return Observable.of(boolOrMessage);
-      }
-      if (boolOrMessage) {
-        return Observable.of(dedent`
-        ${newUsername} is already associated with a different account.
-        `);
-      }
-
-      const usernameUpdate = new Promise((resolve, reject) =>
-        this.updateAttribute('username', newUsername, err => {
-          if (err) {
-            return reject(err);
-          }
-          return resolve();
-        })
-      );
-
-      return Observable.fromPromise(usernameUpdate).map(
-        () => dedent`
-        Your username has been updated successfully.
-        `
-      );
-    });
   };
 
   function prepUserForPublish(user, profileUI) {

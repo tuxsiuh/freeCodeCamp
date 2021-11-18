@@ -37,7 +37,7 @@ The console would display the value ` [ 'John', 'Amy', 'camperCat' ]`.
 
 # --instructions--
 
-The `watchList` array holds objects with information on several movies. Use `map` on `watchList` to assign a new array of objects with only `title` and `rating` keys to the `ratings` variable. The code in the editor currently uses a `for` loop to do this, so you should replace the loop functionality with your `map` expression.
+The `watchList` array holds objects with information on several movies. Use `map` on `watchList` to assign a new array of objects to the `ratings` variable. Each movie in the new array should have only a `title` key with the name of the film, and a `rating` key with the IMDB rating. The code in the editor currently uses a `for` loop to do this, so you should replace the loop functionality with your `map` expression.
 
 # --hints--
 
@@ -61,7 +61,7 @@ Your code should use the `map` method.
 assert(code.match(/\.map/g));
 ```
 
-`ratings` should equal `[{"title":"Inception","rating":"8.8"},{"title":"Interstellar","rating":"8.6"},{"title":"The Dark Knight","rating":"9.0"},{"title":"Batman Begins","rating":"8.3"},{"title":"Avatar","rating":"7.9"}]`.
+`ratings` should equal `[{"title": "Inception", "rating": "8.8"}, {"title": "Interstellar", "rating": "8.6"}, {"title": "The Dark Knight", "rating": "9.0"},{"title": "Batman Begins", "rating": "8.3"}, {"title": "Avatar", "rating": "7.9"}]`.
 
 ```js
 assert.deepEqual(ratings, [
@@ -79,7 +79,7 @@ assert.deepEqual(ratings, [
 
 ```js
 // The global variable
-var watchList = [
+const watchList = [
   {
     "Title": "Inception",
     "Year": "2010",
@@ -194,9 +194,9 @@ var watchList = [
 
 // Only change code below this line
 
-var ratings = [];
-for(var i=0; i < watchList.length; i++){
-  ratings.push({title: watchList[i]["Title"],  rating: watchList[i]["imdbRating"]});
+const ratings = [];
+for (let i = 0; i < watchList.length; i++) {
+  ratings.push({title: watchList[i]["Title"], rating: watchList[i]["imdbRating"]});
 }
 
 // Only change code above this line
@@ -207,8 +207,7 @@ console.log(JSON.stringify(ratings));
 # --solutions--
 
 ```js
-// The global variable
-var watchList = [
+const watchList = [
   {
     "Title": "Inception",
     "Year": "2010",
@@ -321,7 +320,7 @@ var watchList = [
   }
 ];
 
-var ratings = watchList.map(function(movie) {
+const ratings = watchList.map(function(movie) {
   return {
     title: movie["Title"],
     rating: movie["imdbRating"]

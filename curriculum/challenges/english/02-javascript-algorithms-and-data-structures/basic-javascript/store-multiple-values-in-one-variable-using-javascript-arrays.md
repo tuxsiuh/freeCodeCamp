@@ -14,28 +14,28 @@ With JavaScript `array` variables, we can store several pieces of data in one pl
 You start an array declaration with an opening square bracket, end it with a closing square bracket, and put a comma between each entry, like this:
 
 ```js
-var sandwich = ["peanut butter", "jelly", "bread"]
+const sandwich = ["peanut butter", "jelly", "bread"];
 ```
 
 # --instructions--
 
-Modify the new array `myArray` so that it contains both a `string` and a `number` (in that order).
+Modify the new array `myArray` so that it contains both a string and a number (in that order).
 
 # --hints--
 
-`myArray` should be an `array`.
+`myArray` should be an array.
 
 ```js
 assert(typeof myArray == 'object');
 ```
 
-The first item in `myArray` should be a `string`.
+The first item in `myArray` should be a string.
 
 ```js
 assert(typeof myArray[0] !== 'undefined' && typeof myArray[0] == 'string');
 ```
 
-The second item in `myArray` should be a `number`.
+The second item in `myArray` should be a number.
 
 ```js
 assert(typeof myArray[1] !== 'undefined' && typeof myArray[1] == 'number');
@@ -53,11 +53,11 @@ assert(typeof myArray[1] !== 'undefined' && typeof myArray[1] == 'number');
 
 ```js
 // Only change code below this line
-var myArray = [];
+const myArray = [];
 ```
 
 # --solutions--
 
 ```js
-var myArray = ["The Answer", 42];
+const myArray = ["The Answer", 42];
 ```

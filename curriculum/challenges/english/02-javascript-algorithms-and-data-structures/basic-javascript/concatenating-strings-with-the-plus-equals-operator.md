@@ -16,7 +16,7 @@ We can also use the `+=` operator to <dfn>concatenate</dfn> a string onto the en
 Example:
 
 ```js
-var ourStr = "I come first. ";
+let ourStr = "I come first. ";
 ourStr += "I come second.";
 ```
 
@@ -24,7 +24,7 @@ ourStr += "I come second.";
 
 # --instructions--
 
-Build `myStr` over several lines by concatenating these two strings: `This is the first sentence. ` and `This is the second sentence.` using the `+=` operator. Use the `+=` operator similar to how it is shown in the editor. Start by assigning the first string to `myStr`, then add on the second string.
+Build `myStr` over several lines by concatenating these two strings: `This is the first sentence.` and `This is the second sentence.` using the `+=` operator. Use the `+=` operator similar to how it is shown in the example and be sure to include a space between the two strings. Start by assigning the first string to `myStr`, then add on the second string.
 
 # --hints--
 
@@ -57,14 +57,12 @@ assert(code.match(/myStr\s*\+=\s*(["']).*\1/g));
 ## --seed-contents--
 
 ```js
-// Only change code below this line
-
-var myStr;
+let myStr;
 ```
 
 # --solutions--
 
 ```js
-var myStr = "This is the first sentence. ";
+let myStr = "This is the first sentence. ";
 myStr += "This is the second sentence.";
 ```

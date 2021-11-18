@@ -1,13 +1,13 @@
-import React, { Fragment } from 'react';
 import { Grid } from '@freecodecamp/react-bootstrap';
-import Helmet from 'react-helmet';
 import PropTypes from 'prop-types';
+import React from 'react';
+import Helmet from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 
-import Testimonials from './components/Testimonials';
-import LandingTop from './components/LandingTop';
-import Certifications from './components/Certifications';
-import AsSeenIn from './components/AsSeenIn';
+import AsSeenIn from './components/as-seen-in';
+import Certifications from './components/certifications';
+import LandingTop from './components/landing-top';
+import Testimonials from './components/testimonials';
 
 import './landing.css';
 
@@ -19,13 +19,13 @@ export const Landing = ({ page = 'landing' }) => {
   const { t } = useTranslation();
 
   return (
-    <Fragment>
+    <>
       <Helmet>
         <title>{t('metaTags:title')}</title>
       </Helmet>
       <main className='landing-page'>
         <Grid>
-          <LandingTop page={page} />
+          <LandingTop pageName={page} />
         </Grid>
         <Grid fluid={true}>
           <AsSeenIn />
@@ -35,7 +35,7 @@ export const Landing = ({ page = 'landing' }) => {
           <Certifications />
         </Grid>
       </main>
-    </Fragment>
+    </>
   );
 };
 

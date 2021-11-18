@@ -1,12 +1,12 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 
-const { challengeTypes } = require('../../client/utils/challengeTypes');
+const { challengeTypes } = require('../../client/utils/challenge-types');
 
 const slugRE = new RegExp('^[a-z0-9-]+$');
 
 const fileJoi = Joi.object().keys({
-  key: Joi.string(),
+  fileKey: Joi.string(),
   ext: Joi.string(),
   name: Joi.string(),
   editableRegionBoundaries: [Joi.array().items(Joi.number())],
@@ -26,29 +26,27 @@ const schema = Joi.object()
     blockId: Joi.objectId(),
     challengeOrder: Joi.number(),
     removeComments: Joi.bool(),
-    challengeType: Joi.number().min(0).max(11).required(),
+    challengeType: Joi.number().min(0).max(12).required(),
     checksum: Joi.number(),
     // __commentCounts is only used to test the comment replacement
     __commentCounts: Joi.object(),
     // TODO: require this only for normal challenges, not certs
     dashedName: Joi.string().regex(slugRE),
     description: Joi.when('challengeType', {
-      is: [challengeTypes.step, challengeTypes.video],
+      is: [challengeTypes.step, challengeTypes.video, challengeTypes.codeally],
       then: Joi.string().allow(''),
       otherwise: Joi.string().required()
     }),
-    fileName: Joi.string(),
-    files: Joi.object().keys({
-      indexcss: fileJoi,
-      indexhtml: fileJoi,
-      indexjs: fileJoi,
-      indexjsx: fileJoi
-    }),
+    challengeFiles: Joi.array().items(fileJoi),
     guideUrl: Joi.string().uri({ scheme: 'https' }),
-    helpCategory: Joi.valid('JavaScript', 'HTML-CSS', 'Python'),
+    helpCategory: Joi.valid(
+      'JavaScript',
+      'HTML-CSS',
+      'Python',
+      'Relational Databases'
+    ),
     videoUrl: Joi.string().allow(''),
     forumTopicId: Joi.number(),
-    helpRoom: Joi.string(),
     id: Joi.objectId().required(),
     instructions: Joi.string().allow(''),
     isComingSoon: Joi.bool(),
@@ -59,6 +57,22 @@ const schema = Joi.object()
     videoId: Joi.when('challengeType', {
       is: challengeTypes.video,
       then: Joi.string().required()
+    }),
+    videoLocaleIds: Joi.when('challengeType', {
+      is: challengeTypes.video,
+      then: Joi.object().keys({
+        espanol: Joi.string(),
+        italian: Joi.string(),
+        portuguese: Joi.string()
+      })
+    }),
+    bilibiliIds: Joi.when('challengeType', {
+      is: challengeTypes.video,
+      then: Joi.object().keys({
+        aid: Joi.number().required(),
+        bvid: Joi.string().required(),
+        cid: Joi.number().required()
+      })
     }),
     question: Joi.object().keys({
       text: Joi.string().required(),
@@ -73,15 +87,7 @@ const schema = Joi.object()
         crossDomain: Joi.bool()
       })
     ),
-    solutions: Joi.array().items(
-      Joi.object().keys({
-        indexcss: fileJoi,
-        indexhtml: fileJoi,
-        indexjs: fileJoi,
-        indexjsx: fileJoi,
-        indexpy: fileJoi
-      })
-    ),
+    solutions: Joi.array().items(Joi.array().items(fileJoi)),
     superBlock: Joi.string().regex(slugRE),
     superOrder: Joi.number(),
     suborder: Joi.number(),
@@ -101,7 +107,12 @@ const schema = Joi.object()
     template: Joi.string().allow(''),
     time: Joi.string().allow(''),
     title: Joi.string().required(),
-    translationPending: Joi.bool().required()
+    translationPending: Joi.bool().required(),
+    url: Joi.when('challengeType', {
+      is: challengeTypes.codeally,
+      then: Joi.string().required()
+    }),
+    usesMultifileEditor: Joi.boolean()
   })
   .xor('helpCategory', 'isPrivate');
 

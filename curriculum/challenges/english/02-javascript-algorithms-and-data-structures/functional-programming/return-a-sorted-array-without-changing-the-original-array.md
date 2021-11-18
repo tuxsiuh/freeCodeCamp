@@ -40,7 +40,7 @@ assert(
 `nonMutatingSort(globalArray)` should not be hard coded.
 
 ```js
-assert(!nonMutatingSort.toString().match(/[23569]/g));
+assert(!nonMutatingSort.toString().match(/\[.*?[23569].*?\]/gs));
 ```
 
 The function should return a new array, not the array passed to it.
@@ -68,24 +68,23 @@ assert(JSON.stringify(nonMutatingSort([140000, 104, 99])) ===
 ## --seed-contents--
 
 ```js
-var globalArray = [5, 6, 3, 2, 9];
+const globalArray = [5, 6, 3, 2, 9];
+
 function nonMutatingSort(arr) {
   // Only change code below this line
 
 
   // Only change code above this line
 }
+
 nonMutatingSort(globalArray);
 ```
 
 # --solutions--
 
 ```js
-var globalArray = [5, 6, 3, 2, 9];
+const globalArray = [5, 6, 3, 2, 9];
 function nonMutatingSort(arr) {
-  // Only change code below this line
   return [].concat(arr).sort((a,b) => a-b);
-  // Only change code above this line
 }
-nonMutatingSort(globalArray);
 ```

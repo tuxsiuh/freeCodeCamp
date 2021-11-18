@@ -1,22 +1,26 @@
 ---
 id: 5e7b9f090b6c005b0e76f066
-title: Strings and Lists
+title: 字符串和列表
 challengeType: 11
 videoId: lxcFa7ldCi0
+bilibiliIds:
+  aid: 804401443
+  bvid: BV1By4y1j7F9
+  cid: 376385517
 dashedName: strings-and-lists
 ---
 
 # --description--
 
-More resources:
+更多资源：
 
-\- [Exercise](https://www.youtube.com/watch?v=-9TfJF2dwHI)
+\- [练习](https://www.youtube.com/watch?v=-9TfJF2dwHI)
 
 # --question--
 
 ## --text--
 
-What does n equal in this code?
+在这个代码中，n 等于什么？
 
 ```python
 words = 'His e-mail is q-lar@freecodecamp.org'
@@ -27,7 +31,7 @@ n = parts[1]
 
 ## --answers--
 
-mail
+邮件
 
 ---
 

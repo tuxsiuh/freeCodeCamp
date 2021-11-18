@@ -47,7 +47,7 @@
     ],
     [
       "587d781b367417b2b2512abd",
-      "Adjust the Size of a Header Versus a Paragraph Tag"
+      "Adjust the Size of a Heading Element Versus a Paragraph Element"
     ],
     [
       "587d781b367417b2b2512abe",
@@ -217,7 +217,4 @@
       "587d78a9367417b2b2512aea",
       "Make Motion More Natural Using a Bezier Curve"
     ]
-  ],
-  "helpRoom": "Help",
-  "fileName": "01-responsive-web-design/applied-visual-design.json"
-}
+  ]}

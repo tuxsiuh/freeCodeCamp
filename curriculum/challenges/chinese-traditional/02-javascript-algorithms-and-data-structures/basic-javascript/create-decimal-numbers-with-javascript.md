@@ -11,7 +11,7 @@ dashedName: create-decimal-numbers-with-javascript
 
 我們也可以把小數存儲到變量中。 小數有時候也被稱作<dfn>浮點數</dfn>或者 <dfn>floats</dfn>。
 
-**提示：** 不是所有的實數都可以用浮點數（<dfn>floating point</dfn>）來表示。 因爲可能產生四捨五入的錯誤， [查看詳情](https://en.wikipedia.org/wiki/Floating_point#Accuracy_problems)。
+**提示：** 不是所有的實數都可以用浮點數（<dfn>floating point</dfn>）來表示。 因爲可能產生四捨五入的錯誤， [點擊這裏瞭解細節](https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems)。
 
 # --instructions--
 
@@ -42,13 +42,14 @@ assert(myDecimal % 1 != 0);
 ## --seed-contents--
 
 ```js
-var ourDecimal = 5.7;
+const ourDecimal = 5.7;
 
 // Only change code below this line
+
 ```
 
 # --solutions--
 
 ```js
-var myDecimal = 9.9;
+const myDecimal = 9.9;
 ```

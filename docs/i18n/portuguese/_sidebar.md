@@ -1,31 +1,36 @@
-- **Getting Started**
-  - [Introduction](index.md "Contribute to the freeCodeCamp.org Community")
-  - [Frequently Asked Questions](FAQ.md)
-- **Code Contribution**
-  - [Set up freeCodeCamp locally](how-to-setup-freecodecamp-locally.md)
-  - [Open a pull request](how-to-open-a-pull-request.md)
-  - [Work on coding challenges](how-to-work-on-coding-challenges.md)
-  - [Work on video challenges](how-to-help-with-video-challenges.md)
-  - [Work on the news theme](how-to-work-on-the-news-theme.md)
-  - [Work on the docs theme](how-to-work-on-the-docs-theme.md)
-- **Translation Contribution**
-  - [Work on translating resources](how-to-translate-files.md)
-  - [Work on proofreading translations](how-to-proofread-files.md)
-- **Optional Guides**
-  - [Set up freeCodeCamp on Windows (WSL)](how-to-setup-wsl.md)
-  - [Add Cypress tests](how-to-add-cypress-tests.md)
-  - [Work on localized client web app](how-to-work-on-localized-client-webapp.md)
-  - [Catch outgoing emails locally](how-to-catch-outgoing-emails-locally.md)
+- **Primeiros passos**
+  - [Introdução](index.md "Contribua para a comunidade do freeCodeCamp.org")
+  - [Perguntas frequentes](FAQ.md)
+- **Contribuição de tradução**
+  - [Ajude na tradução de recursos](how-to-translate-files.md)
+  - [Ajude na revisão de traduções](how-to-proofread-files.md)
+- **Contribuição de código**
+  - [Configure o freeCodeCamp localmente](how-to-setup-freecodecamp-locally.md)
+  - [Seguir as melhores práticas de programação](codebase-best-practices.md)
+  - [Abrir um pull request](how-to-open-a-pull-request.md)
+  - [Trabalhar em desafios de programação](how-to-work-on-coding-challenges.md)
+  - [Trabalhar em projetos práticos](how-to-work-on-practice-projects.md)
+  - [Trabalhar nos tutoriais com o CodeRoad](how-to-work-on-tutorials-that-use-coderoad.md)
+  - [Ajudar na tradução da aplicação web](how-to-work-on-localized-client-webapp.md)
+  - [Trabalhar em testes do Cypress](how-to-add-cypress-tests.md)
+  - [Trabalhar nos desafios em vídeo](how-to-help-with-video-challenges.md)
+  - [Trabalhar no tema de notícias](how-to-work-on-the-news-theme.md)
+  - [Trabalhar no tema de docs](how-to-work-on-the-docs-theme.md)
+- **Guias adicionais**
+  - [Testar traduções localmente](how-to-test-translations-locally.md)
+  - [Compreender a estrutura do arquivo do currículo](curriculum-file-structure.md)
+  - [Depurar e-mails enviados localmente](how-to-catch-outgoing-emails-locally.md)
+  - [Configurar freeCodeCamp no Windows (WSL)](how-to-setup-wsl.md)
 
 ---
 
-- **Flight Manuals** (for Staff & Mods)
-  - [Moderator Handbook](moderator-handbook.md)
-  - [DevOps Handbook](devops.md)
+- **Manuais de Voo** (para Equipe & Moderadores)
+  - [Manual do Moderador](moderator-handbook.md)
+  - [Manual do DevOps](devops.md)
 
 ---
 
-- **Our Community**
+- **Nossa comunidade**
   - [**GitHub**](https://github.com/freecodecamp/freecodecamp)
-  - [**Discourse Forum**](https://freecodecamp.org/forum/c/contributors)
-  - [**Chat Server**](https://chat.freecodecamp.org/home)
+  - [**Fórum de discussão**](https://freecodecamp.org/forum/c/contributors)
+  - [**Servidor do chat**](https://chat.freecodecamp.org/home)

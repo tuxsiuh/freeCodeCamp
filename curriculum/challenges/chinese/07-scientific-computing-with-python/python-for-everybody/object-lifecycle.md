@@ -1,8 +1,12 @@
 ---
 id: 5e7b9f170b6c005b0e76f087
-title: Object Lifecycle
+title: 对象的生命周期
 challengeType: 11
 videoId: p1r3h_AMMIM
+bilibiliIds:
+  aid: 461998717
+  bvid: BV1JL411n7Hr
+  cid: 377529681
 dashedName: object-lifecycle
 ---
 
@@ -10,7 +14,7 @@ dashedName: object-lifecycle
 
 ## --text--
 
-What will the following program print?:
+以下程序将打印什么？
 
 ```python
 class PartyAnimal:

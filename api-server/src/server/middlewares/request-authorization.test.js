@@ -1,9 +1,7 @@
-/* global describe it expect */
-import sinon from 'sinon';
-import { mockReq as mockRequest, mockRes } from 'sinon-express-mock';
 import jwt from 'jsonwebtoken';
 
-import { homeLocation } from '../../../../config/env';
+import { homeLocation } from '../../../../config/env.json';
+import { mockReq as mockRequest, mockRes } from '../boot_tests/challenge.test';
 import createRequestAuthorization, {
   isAllowedPath
 } from './request-authorization';
@@ -110,11 +108,11 @@ describe('request-authorization', () => {
         expect.assertions(2);
         const req = mockReq({ path: '/some-path/that-needs/auth' });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
         expect(() => requestAuthorization(req, res, next)).toThrowError(
           'Access token is required for this request'
         );
-        expect(next.called).toBe(false);
+        expect(next).not.toHaveBeenCalled();
       });
 
       it('throws when the access token is invalid', () => {
@@ -126,12 +124,12 @@ describe('request-authorization', () => {
           cookie: { jwt_access_token: invalidJWT }
         });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
 
         expect(() => requestAuthorization(req, res, next)).toThrowError(
           'Access token is invalid'
         );
-        expect(next.called).toBe(false);
+        expect(next).not.toHaveBeenCalled();
       });
 
       it('throws when the access token has expired', () => {
@@ -146,15 +144,15 @@ describe('request-authorization', () => {
           cookie: { jwt_access_token: invalidJWT }
         });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
 
         expect(() => requestAuthorization(req, res, next)).toThrowError(
           'Access token is no longer valid'
         );
-        expect(next.called).toBe(false);
+        expect(next).not.toHaveBeenCalled();
       });
 
-      it('adds the user to the request object', async done => {
+      it('adds the user to the request object', async () => {
         expect.assertions(3);
         const validJWT = jwt.sign({ accessToken }, validJWTSecret);
         const req = mockReq({
@@ -163,15 +161,14 @@ describe('request-authorization', () => {
           cookie: { jwt_access_token: validJWT }
         });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
         await requestAuthorization(req, res, next);
-        expect(next.called).toBe(true);
+        expect(next).toHaveBeenCalled();
         expect(req).toHaveProperty('user');
         expect(req.user).toEqual(users['456def']);
-        return done();
       });
 
-      it('adds the jwt to the headers', async done => {
+      it('adds the jwt to the headers', async () => {
         const validJWT = jwt.sign({ accessToken }, validJWTSecret);
         const req = mockReq({
           path: '/some-path/that-needs/auth',
@@ -179,19 +176,18 @@ describe('request-authorization', () => {
           cookie: { jwt_access_token: validJWT }
         });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
         await requestAuthorization(req, res, next);
-        expect(res.set.calledWith('X-fcc-access-token', validJWT)).toBe(true);
-        return done();
+        expect(res.set).toHaveBeenCalledWith('X-fcc-access-token', validJWT);
       });
 
       it('calls next if request does not require authorization', async () => {
         // currently /unsubscribe does not require authorization
         const req = mockReq({ path: '/unsubscribe/another/route' });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
         await requestAuthorization(req, res, next);
-        expect(next.called).toBe(true);
+        expect(next).toHaveBeenCalled();
       });
     });
 
@@ -200,11 +196,11 @@ describe('request-authorization', () => {
         expect.assertions(2);
         const req = mockReq({ path: '/some-path/that-needs/auth' });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
         expect(() => requestAuthorization(req, res, next)).toThrowError(
           'Access token is required for this request'
         );
-        expect(next.called).toBe(false);
+        expect(next).not.toHaveBeenCalled();
       });
 
       it('throws when the access token is invalid', () => {
@@ -215,12 +211,12 @@ describe('request-authorization', () => {
           headers: { 'X-fcc-access-token': invalidJWT }
         });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
 
         expect(() => requestAuthorization(req, res, next)).toThrowError(
           'Access token is invalid'
         );
-        expect(next.called).toBe(false);
+        expect(next).not.toHaveBeenCalled();
       });
 
       it('throws when the access token has expired', () => {
@@ -234,15 +230,15 @@ describe('request-authorization', () => {
           headers: { 'X-fcc-access-token': invalidJWT }
         });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
 
         expect(() => requestAuthorization(req, res, next)).toThrowError(
           'Access token is no longer valid'
         );
-        expect(next.called).toBe(false);
+        expect(next).not.toHaveBeenCalled();
       });
 
-      it('adds the user to the request object', async done => {
+      it('adds the user to the request object', async () => {
         expect.assertions(3);
         const validJWT = jwt.sign({ accessToken }, validJWTSecret);
         const req = mockReq({
@@ -250,15 +246,14 @@ describe('request-authorization', () => {
           headers: { 'X-fcc-access-token': validJWT }
         });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
         await requestAuthorization(req, res, next);
-        expect(next.called).toBe(true);
+        expect(next).toHaveBeenCalled();
         expect(req).toHaveProperty('user');
         expect(req.user).toEqual(users['456def']);
-        return done();
       });
 
-      it('adds the jwt to the headers', async done => {
+      it('adds the jwt to the headers', async () => {
         const validJWT = jwt.sign({ accessToken }, validJWTSecret);
         const req = mockReq({
           path: '/some-path/that-needs/auth',
@@ -266,19 +261,18 @@ describe('request-authorization', () => {
           cookie: { jwt_access_token: validJWT }
         });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
         await requestAuthorization(req, res, next);
-        expect(res.set.calledWith('X-fcc-access-token', validJWT)).toBe(true);
-        return done();
+        expect(res.set).toHaveBeenCalledWith('X-fcc-access-token', validJWT);
       });
 
       it('calls next if request does not require authorization', async () => {
         // currently /unsubscribe does not require authorization
         const req = mockReq({ path: '/unsubscribe/another/route' });
         const res = mockRes();
-        const next = sinon.spy();
+        const next = jest.fn();
         await requestAuthorization(req, res, next);
-        expect(next.called).toBe(true);
+        expect(next).toHaveBeenCalled();
       });
     });
   });

@@ -42,11 +42,11 @@ dashedName: nest-an-anchor-element-within-a-paragraph
 
 此示例的最终输出结果是这样：
 
-你可以访问 <a href="https://www.freecodecamp.org" target="_blank">link to www.freecodecamp.org</a>。
+Here's a <a href="https://www.freecodecamp.org" target="_blank">link to www.freecodecamp.org</a> for you to follow.
 
 # --instructions--
 
-创建一个新的段落 `p` 元素来包裹 `a` 元素。 新段落应有文本 `View more cat photos`，其中 `cat photos` 是一个链接，其余是纯文本。
+创建一个新的段落 `p` 元素来包裹 `a` 元素。 不要创建一个新的锚点标签。 新段落应有文本 `View more cat photos`，其中 `cat photos` 是一个链接，其余是纯文本。
 
 # --hints--
 
@@ -141,7 +141,7 @@ assert(
 
   <a href="https://www.freecatphotoapp.com" target="_blank">cat photos</a>
 
-  <img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+  <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back.">
 
   <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
   <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>
@@ -155,7 +155,7 @@ assert(
 <main>
   <p>View more <a target="_blank" href="https://www.freecatphotoapp.com">cat photos</a></p>
 
-  <img src="https://www.bit.ly/fcc-relaxing-cat" alt="A cute orange cat lying on its back.">
+  <img src="https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg" alt="A cute orange cat lying on its back.">
 
   <p>Kitty ipsum dolor sit amet, shed everywhere shed everywhere stretching attack your ankles chase the red dot, hairball run catnip eat the grass sniff.</p>
   <p>Purr jump eat the grass rip the couch scratched sunbathe, shed everywhere rip the couch sleep in the sink fluffy fur catnip scratched.</p>

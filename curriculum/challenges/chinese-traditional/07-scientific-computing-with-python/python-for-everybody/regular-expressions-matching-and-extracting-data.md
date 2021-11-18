@@ -1,8 +1,12 @@
 ---
 id: 5e7b9f0b0b6c005b0e76f06f
-title: 'Regular Expressions: Matching and Extracting Data'
+title: '正則表達式：匹配和提取數據'
 challengeType: 11
 videoId: LaCZnTbQGkE
+bilibiliIds:
+  aid: 975629041
+  bvid: BV1i44y1b7hE
+  cid: 414167130
 dashedName: regular-expressions-matching-and-extracting-data
 ---
 
@@ -10,7 +14,7 @@ dashedName: regular-expressions-matching-and-extracting-data
 
 ## --text--
 
-What will the following program print?:
+該程序會打印出什麼？
 
 ```python
 import re

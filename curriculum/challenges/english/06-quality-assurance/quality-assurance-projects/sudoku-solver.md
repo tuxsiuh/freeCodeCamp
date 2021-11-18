@@ -2,6 +2,7 @@
 id: 5e601bf95ac9d0ecd8b94afd
 title: Sudoku Solver
 challengeType: 4
+forumTopicId: 462357
 dashedName: sudoku-solver
 ---
 
@@ -39,7 +40,7 @@ Write the following tests in `tests/1_unit-tests.js`:
 -   Logic handles an invalid region (3x3 grid) placement
 -   Valid puzzle strings pass the solver
 -   Invalid puzzle strings fail the solver
--   Solver returns the the expected solution for an incomplete puzzle
+-   Solver returns the expected solution for an incomplete puzzle
 
 Write the following tests in `tests/2_functional-tests.js`
 

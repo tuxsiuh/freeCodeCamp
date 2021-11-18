@@ -16,7 +16,7 @@ También podemos utilizar el operador `+=` para <dfn>concatenar</dfn> una cadena
 Ejemplo:
 
 ```js
-var ourStr = "I come first. ";
+let ourStr = "I come first. ";
 ourStr += "I come second.";
 ```
 
@@ -24,7 +24,7 @@ ourStr += "I come second.";
 
 # --instructions--
 
-Construye `myStr` en varias líneas concatenando estas dos cadenas: `This is the first sentence.` y `This is the second sentence.` usando el operador `+=`. Utiliza el operador `+=` de forma similar a como se muestra en el editor. Comienza asignando la primera cadena a `myStr`, luego añade la segunda cadena.
+Construye `myStr` en varias líneas concatenando estas dos cadenas: `This is the first sentence.` y `This is the second sentence.` usando el operador `+=`. Utiliza el operador `+=` similar a como se muestra en el ejemplo y asegúrate de incluir un espacio entre las dos cadenas. Comienza asignando la primera cadena a `myStr`, luego añade la segunda cadena.
 
 # --hints--
 
@@ -57,14 +57,12 @@ assert(code.match(/myStr\s*\+=\s*(["']).*\1/g));
 ## --seed-contents--
 
 ```js
-// Only change code below this line
-
-var myStr;
+let myStr;
 ```
 
 # --solutions--
 
 ```js
-var myStr = "This is the first sentence. ";
+let myStr = "This is the first sentence. ";
 myStr += "This is the second sentence.";
 ```
